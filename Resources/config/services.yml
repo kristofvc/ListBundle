@@ -1,0 +1,6 @@
+services:
+    twig.extension.renderList:
+        class: Kristofvc\ListBundle\Twig\Extension\ListExtension
+        arguments: ["@service_container"]
+        tags:
+            -  { name: twig.extension }

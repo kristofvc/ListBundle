@@ -1,0 +1,59 @@
+<?php
+
+namespace Kristofvc\ListBundle\Twig\Extension;
+
+use Symfony\Component\DependencyInjection\ContainerInterface;
+use Kristofvc\ListBundle\Builder\ListBuilder;
+
+class ListExtension extends \Twig_Extension
+{
+    protected $container;
+
+    public function __construct(ContainerInterface $container){
+        $this->container = $container;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function initRuntime(\Twig_Environment $environment)
+    {
+        $this->environment = $environment;
+    }
+
+    public function getFunctions()
+    {
+        return array(
+            'renderList'  => new \Twig_Function_Method($this, 'renderList', array('is_safe' => array('html'))),
+        );
+    }
+
+    public function renderList($service, array $params = array()){
+        $itemconfiguration = $this->container->get($service);
+        
+        $nbitems = isset($params['nbitems'])? $params['nbitems']: 15;
+        $pageParameterName = isset($params['pageParameterName'])? $params['pageParameterName']: 'page';
+        
+        $builder = new ListBuilder($this->container, $itemconfiguration);
+        $builder->getFilterBuilder()->analyzeFilters($this->container->get('request'), $itemconfiguration);
+        $itempagination = $builder->getPagination($nbitems, $pageParameterName);     
+        
+        $template = $this->environment->loadTemplate("KristofvcListBundle:ListExtension:renderList.html.twig");
+        
+        return $template->render(array_merge($params, array(
+            'builder' => $builder,
+            'pagination' => $itempagination,
+            'params' => $params
+        )));
+    }
+
+    /**
+     * Returns the name of the extension.
+     *
+     * @return string The extension name
+     */
+    public function getName()
+    {
+        return 'list_extension';
+    }
+}

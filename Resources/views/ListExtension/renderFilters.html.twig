@@ -1,0 +1,79 @@
+<div class="well">
+    <form action="{{ app.request.requesturi }}" name="filters" id="filtersform" class="form-horizontal form-inline">
+        {% set count = 0 %}
+        {% for filter in builder.configuration.filters %}
+            {% for key, data in filter.data %}
+                {% set count = count + 1 %}
+            {% endfor %}
+        {% endfor %}
+        <div class="control-group">
+            <label class="control-label" style="font-size: 150%"><b>Filter:</b></label>
+            <div class="controls">        
+                <select class="filteringtype">
+                    {% for filter in builder.configuration.filters %}
+                        <option value="{{ filter.field }}">{{ filter.name }}</option>
+                    {% endfor %}
+                </select>
+                <a class="btn btn-mini btn-success addFilterbutton" href="#" data-count="{{ count + 1 }}" ><i class="icon-plus icon-white"></i></a>         
+                <button type="submit" class="btn btn-mini btn-info"><i class="icon-filter icon-white"></i> filter</button>
+            </div>
+        </div>
+        {% for filter in builder.configuration.filters %}
+            {% for key, data in filter.data %}
+                <div class="control-group"  style="margin-top: -15px;"> 
+                    {% include filter.getTemplate() with { 'filter': filter, 'index': key, 'data': data } %} 
+                </div>
+            {% endfor %}
+        {% endfor %}
+        <div class="clearfix"></div>
+        
+    </form>
+
+    <div id="filterdefinitions" style="display:none;">
+        {% for filter in builder.configuration.filters %}
+            <div class="{{filter.field}}filter" data-prototype='
+                <div class="control-group" style="margin-top: -15px;">
+                    {% include filter.getTemplate() with { 'filter': filter } %} 
+                </div>
+            '></div>
+        {% endfor %}
+    </div>
+
+    <script type="text/javascript"> 
+        function initDatePickers(){
+            $(".datepicker").datepicker({ dateFormat: "yy-mm-dd", yearRange: "-100:+10", changeMonth: true, changeYear: true });
+            $(".datepickerbtn").on("click", function(e){
+                e.preventDefault();
+                $(this).prev('input').datepicker("show");
+            });
+
+        }
+        $(document).ready(function() { 
+            initDatePickers();       
+            
+            $('.addFilterbutton').on('click', function(e) {
+                e.preventDefault();
+
+                var type = $('.filteringtype').val();
+                var newWidget = $('#filterdefinitions').find('.'+type+'filter').attr('data-prototype');
+                var typeCount = $(this).attr('data-count');
+                newWidget = newWidget.replace(/__index__/g, typeCount);
+                $(this).attr('data-count', ++typeCount);
+
+                var newFieldset = $('<div></div>').html(newWidget);
+                $(e.delegateTarget).parent().parent().after(newFieldset);
+                
+                $('.action-remove').on('click', function(e) {
+                    e.preventDefault();
+                    $(this).parent().parent().remove();
+                });
+                initDatePickers();
+            });
+
+            $('.action-remove').on('click', function(e) {
+                e.preventDefault();
+                $(this).parent().parent().remove();
+            });             
+        }); 	
+    </script>
+</div>
