@@ -1,4 +1,4 @@
-KristofvcListBundle
+KristofvcListBundle [![Build Status](https://travis-ci.org/kristofvc/KristofvcListBundle.png?branch=master)](https://travis-ci.org/kristofvc/KristofvcListBundle)
 ===================
 
 This bundle is used rendering a list of objects. After setting up a configuration for your list, you can sort columns, filter items and view paginated data.
