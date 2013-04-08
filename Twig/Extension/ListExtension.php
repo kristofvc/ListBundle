@@ -30,6 +30,10 @@ class ListExtension extends \Twig_Extension
 
     public function renderList($service, array $params = array()){
         $itemconfiguration = $this->container->get($service);
+        $request = $this->container->get('request');
+        
+        $route = $request->get('_route');        
+        $routeParams = $request->query->all();
         
         $nbitems = isset($params['nbitems'])? $params['nbitems']: 15;
         $pageParameterName = isset($params['pageParameterName'])? $params['pageParameterName']: 'page';
@@ -43,7 +47,9 @@ class ListExtension extends \Twig_Extension
         return $template->render(array_merge($params, array(
             'builder' => $builder,
             'pagination' => $itempagination,
-            'params' => $params
+            'params' => $params,
+            'route' => $route,
+            'routeParams' => $routeParams
         )));
     }
 

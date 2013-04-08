@@ -1,5 +1,9 @@
 <div class="well">
-    <form action="{{ app.request.requesturi }}" name="filters" id="filtersform" class="form-horizontal form-inline">
+    <form action="{{ path(route,routeParams) }}" method="get" name="filters" id="filtersform" class="form-horizontal form-inline">
+        {% for key, routeParam in routeParams %}
+            <input type="hidden" name="{{ key }}" value="{{ routeParam }}" />
+        {% endfor %}
+
         {% set count = 0 %}
         {% for filter in builder.configuration.filters %}
             {% for key, data in filter.data %}

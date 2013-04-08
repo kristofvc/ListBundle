@@ -76,9 +76,8 @@ You can then render your list by putting the following in your view:
 
 ## TODO
 
-- Custom templates for rendering lists
 - More filters
 - General configuration for listitems per page, etc.
 - Custom configuration params per list
-- Documentation
+- Documentation (custom templates, configuration, ...)
 - Cleanup
