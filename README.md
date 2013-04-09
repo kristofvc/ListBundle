@@ -1,14 +1,20 @@
 KristofvcListBundle [![Build Status](https://travis-ci.org/kristofvc/KristofvcListBundle.png?branch=master)](https://travis-ci.org/kristofvc/KristofvcListBundle)
 ===================
 
-This bundle is used rendering a list of objects. After setting up a configuration for your list, you can sort columns, filter items and view paginated data.
+This bundle is used for rendering a list of objects. After setting up a configuration for your list, you can sort columns, filter items and view paginated data.
 
 ## Install
-require the bundle in your composer.json "kristofvc/kristofvc-list-bundle": "dev-master"
-composer update kristofvc/kristofvc-list-bundle
 
+require the bundle in your composer.json "kristofvc/kristofvc-list-bundle": "dev-master"
+
+```php
+composer update kristofvc/kristofvc-list-bundle
+```
 Add the following to app/AppKernel.php:
+
+```php
 new Kristofvc\ListBundle\KristofvcListBundle()
+```
 
 ## Example configuration
 
