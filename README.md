@@ -83,7 +83,5 @@ You can then render your list by putting the following in your view:
 ## TODO
 
 - More filters
-- General configuration for listitems per page, etc.
-- Custom configuration params per list
 - Documentation (custom templates, configuration, ...)
 - Cleanup
