@@ -16,8 +16,10 @@ class ListBuilder
     
     protected $filterBuilder;
     protected $definedFilters = array();
+    
+    protected $params;
 
-    public function __construct(ContainerInterface $container, AbstractListConfiguration $configuration)
+    public function __construct(ContainerInterface $container, AbstractListConfiguration $configuration, $params)
     {
         $this->container = $container;
         $this->configuration = $configuration;
@@ -27,6 +29,8 @@ class ListBuilder
         $this->configuration->buildColumns();
         $this->configuration->buildActions();
         $this->configuration->buildFilters();
+        
+        $this->mergeParams($params);
     }
 
     public function getConfiguration()
@@ -38,7 +42,11 @@ class ListBuilder
     {
         return $this->filterBuilder;
     }
-
+    
+    public function getParams()
+    {
+        return $this->params;
+    }
     
     public function getQuery()
     {
@@ -54,12 +62,12 @@ class ListBuilder
         return $qb->getQuery();
     }
 
-    public function getPagination($nbitems = 15, $pageParameterName = 'page')
+    public function getPagination()
     {
         $paginator = $this->container->get('knp_paginator');
 
         $pagination = $paginator->paginate(
-                $this->getQuery(), $this->container->get('request')->query->get($pageParameterName, 1), $nbitems, array('pageParameterName' => $pageParameterName)
+                $this->getQuery(), $this->container->get('request')->query->get($this->params['pageParameterName'], 1), $this->params['nbItems'], array('pageParameterName' => $this->params['pageParameterName'])
         );
 
         return $pagination;
@@ -117,6 +125,25 @@ class ListBuilder
         }
 
         return $routeParams;
+    }
+    
+    public function getDefaultParams(){
+        return array(
+            'template' => $this->container->getParameter('kristofvc_list.list_template'),
+            'pageParameterName'  => $this->container->getParameter('kristofvc_list.page_parameter_name'),
+            'nbItems' => $this->container->getParameter('kristofvc_list.items_per_page')
+        );
+    }
+    
+    public function mergeParams(array $params){
+        $defaultParams = $this->getDefaultParams();
+        foreach($defaultParams as $key => $value){
+            if(isset($params[$key])){
+                $defaultParams[$key] = $params[$key];
+            }
+        }
+        $this->params = $defaultParams;
+        return $this;
     }
 
 }

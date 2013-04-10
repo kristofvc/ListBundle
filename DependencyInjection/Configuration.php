@@ -20,9 +20,18 @@ class Configuration implements ConfigurationInterface
         $treeBuilder = new TreeBuilder();
         $rootNode = $treeBuilder->root('kristofvc_list');
 
-        // Here you should define the parameters that are allowed to
-        // configure your bundle. See the documentation linked above for
-        // more information on that topic.
+        $rootNode
+            ->children()
+                ->scalarNode('items_per_page')
+                    ->defaultValue(15)
+                ->end()
+                ->scalarNode('page_parameter_name')
+                    ->defaultValue('page')
+                ->end()
+                ->scalarNode('list_template')
+                    ->defaultValue('KristofvcListBundle:ListTemplates:default_list.html.twig')
+                ->end()
+            ->end();
 
         return $treeBuilder;
     }

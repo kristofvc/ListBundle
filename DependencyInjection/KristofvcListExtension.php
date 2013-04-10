@@ -22,6 +22,10 @@ class KristofvcListExtension extends Extension
         $configuration = new Configuration();
         $config = $this->processConfiguration($configuration, $configs);
 
+        $container->setParameter('kristofvc_list.items_per_page', $config['items_per_page']);
+        $container->setParameter('kristofvc_list.list_template', $config['list_template']);
+        $container->setParameter('kristofvc_list.page_parameter_name', $config['page_parameter_name']);
+        
         $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('services.yml');
     }

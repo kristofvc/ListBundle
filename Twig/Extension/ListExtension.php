@@ -35,22 +35,27 @@ class ListExtension extends \Twig_Extension
         $route = $request->get('_route');        
         $routeParams = $request->query->all();
         
-        $nbitems = isset($params['nbitems'])? $params['nbitems']: 15;
-        $pageParameterName = isset($params['pageParameterName'])? $params['pageParameterName']: 'page';
-        
-        $builder = new ListBuilder($this->container, $itemconfiguration);
+        $builder = new ListBuilder($this->container, $itemconfiguration, $params);
         $builder->getFilterBuilder()->analyzeFilters($this->container->get('request'), $itemconfiguration);
-        $itempagination = $builder->getPagination($nbitems, $pageParameterName);     
+        $itempagination = $builder->getPagination();     
         
         $template = $this->environment->loadTemplate("KristofvcListBundle:ListExtension:renderList.html.twig");
         
         return $template->render(array_merge($params, array(
             'builder' => $builder,
             'pagination' => $itempagination,
-            'params' => $params,
+            'params' => $builder->getParams(),
             'route' => $route,
             'routeParams' => $routeParams
         )));
+    }
+    
+    public function getDefaultParams(){
+        return array(
+            'template' => $this->container->getParameter('kristofvc_list.list_template'),
+            'pageParameterName'  => $this->container->getParameter('kristofvc_list.page_parameter_name'),
+            'nbitems' => $this->container->getParameter('kristofvc_list.items_per_page')
+        );
     }
 
     /**
