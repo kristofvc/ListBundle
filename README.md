@@ -3,84 +3,44 @@ KristofvcListBundle [![Build Status](https://travis-ci.org/kristofvc/KristofvcLi
 
 This bundle is used for rendering a list of objects. After setting up a configuration for your list, you can sort columns, filter items and view paginated data.
 
-## Install
+Documentation
+-------------
 
-require the bundle in your composer.json "kristofvc/kristofvc-list-bundle": "dev-master"
+The documentation is stored in the `Resources/doc/index.md`
+file in this bundle:
 
-```php
-composer update kristofvc/kristofvc-list-bundle
-```
-Add the following to app/AppKernel.php:
+[Read the Documentation for master](https://github.com/kristofvc/KristofvcListBundle/blob/master/Resources/doc/index.md)
 
-```php
-new Kristofvc\ListBundle\KristofvcListBundle()
-```
+Installation
+------------
 
-## Example configuration
+All the installation instructions are located in [documentation](https://github.com/kristofvc/KristofvcListBundle/blob/master/Resources/doc/index.md).
 
-Below is an example configuration for a list of users.
+License
+-------
 
+This bundle is under the MIT license. See the complete license in the bundle:
 
-```php
-    <?php
+    Resources/meta/LICENSE
 
-    namespace UserBundle\Helper;
+About
+-----
 
-    use Kristofvc\ListBundle\Model\Column;
-    use Kristofvc\ListBundle\Model\Action;
-    use Kristofvc\ListBundle\Configuration\AbstractListConfiguration;
-    use Kristofvc\ListBundle\Model\Filters\StringFilter;
-    use Kristofvc\ListBundle\Model\Filters\DateFilter;
+[Kristof Van Cauwenbergh](https://github.com/kristofvc)'s initiative.
+See also the list of [contributors](https://github.com/kristofvc/KristofvcListBundle/contributors).
 
-    class UserListConfiguration extends AbstractListConfiguration
-    {
-        public function buildColumns(){
-            $this->addColumn(new Column('Email', 'admin.list.email', true));
-            $this->addColumn(new Column('Name', 'admin.list.name', true, 'lastname, i.firstname'));
-            $this->addColumn(new Column('Groups', 'admin.list.groups', false));
-            $this->addColumn(new Column('LastLogin', 'admin.list.lastactive', true)); 
-        }
+Reporting an issue or a feature request
+---------------------------------------
 
-        public function buildActions(){
-            $this->addAction(new Action('edit', 'admin_user_edit', array('Id'), 'icon-edit'));
-            $this->addAction(new Action('edit', 'admin_user_deleteuser', array('Id'), 'icon-trash', true, 'danger', true));
-        }
+Issues and feature requests are tracked in the [Github issue tracker](https://github.com/kristofvc/KristofvcListBundle/issues).
 
-        public function buildFilters(){
-            $this->addFilter(new StringFilter('E-mail', 'email'));
-            $this->addFilter(new StringFilter('Firstname', 'firstname'));
-            $this->addFilter(new StringFilter('Lastname', 'lastname'));
-            $this->addFilter(new DateFilter('Last login', 'lastLogin'));
-        }
+When reporting a bug, it may be a good idea to reproduce it in a basic project
+built using the [Symfony Standard Edition](https://github.com/symfony/symfony-standard)
+to allow developers of the bundle to reproduce the issue by simply cloning it
+and following some steps.
 
-        public function getRepository(){
-            return "AcmeDemoBundle:User";
-        }
-
-        public function buildQuery(&$qb){
-            $qb->andWhere('i.deletedAt is null');
-        }
-    }
-```
-
-## Rendering the list
-
-You got to make a service for your configuration:
-
-```php
-    services:
-        users.list.configuration:
-            class: UserBundle\Helper\UserListConfiguration
-```
-
-You can then render your list by putting the following in your view:
-
-```twig
-    {{ renderList('users.list.configuration') }}
-```
-
-
-## TODO
+TODO
+----
 
 - More filters
 - Documentation (custom templates, configuration, ...)
