@@ -3,6 +3,14 @@ KristofvcListBundle [![Build Status](https://travis-ci.org/kristofvc/KristofvcLi
 
 This bundle is used for rendering a list of objects. After setting up a configuration for your list, you can sort columns, filter items and view paginated data.
 
+Features include:
+
+- Building a list of objects
+- Render this list in twig
+- Sort columns
+- Filter your list of objects
+- Add actions that can be executed per object
+
 Documentation
 -------------
 
@@ -14,7 +22,7 @@ file in this bundle:
 Installation
 ------------
 
-All the installation instructions are located in [documentation](https://github.com/kristofvc/KristofvcListBundle/blob/master/Resources/doc/index.md).
+All the installation instructions are located in the [documentation](https://github.com/kristofvc/KristofvcListBundle/blob/master/Resources/doc/index.md).
 
 License
 -------
@@ -39,9 +47,11 @@ built using the [Symfony Standard Edition](https://github.com/symfony/symfony-st
 to allow developers of the bundle to reproduce the issue by simply cloning it
 and following some steps.
 
+Feel free to fork this project, to contribute and to send us pull requests.
+
 TODO
 ----
 
 - More filters
-- Documentation (custom templates, configuration, ...)
+- More templates (not only bootstrap)
 - Cleanup

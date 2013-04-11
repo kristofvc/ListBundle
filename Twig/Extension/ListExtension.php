@@ -50,14 +50,6 @@ class ListExtension extends \Twig_Extension
         )));
     }
     
-    public function getDefaultParams(){
-        return array(
-            'template' => $this->container->getParameter('kristofvc_list.list_template'),
-            'pageParameterName'  => $this->container->getParameter('kristofvc_list.page_parameter_name'),
-            'nbitems' => $this->container->getParameter('kristofvc_list.items_per_page')
-        );
-    }
-
     /**
      * Returns the name of the extension.
      *

@@ -67,7 +67,7 @@ class ListBuilder
         $paginator = $this->container->get('knp_paginator');
 
         $pagination = $paginator->paginate(
-                $this->getQuery(), $this->container->get('request')->query->get($this->params['pageParameterName'], 1), $this->params['nbItems'], array('pageParameterName' => $this->params['pageParameterName'])
+                $this->getQuery(), $this->container->get('request')->query->get($this->params['page_parameter_name'], 1), $this->params['items_per_page'], array('pageParameterName' => $this->params['page_parameter_name'])
         );
 
         return $pagination;
@@ -129,9 +129,9 @@ class ListBuilder
     
     public function getDefaultParams(){
         return array(
-            'template' => $this->container->getParameter('kristofvc_list.list_template'),
-            'pageParameterName'  => $this->container->getParameter('kristofvc_list.page_parameter_name'),
-            'nbItems' => $this->container->getParameter('kristofvc_list.items_per_page')
+            'list_template' => $this->container->getParameter('kristofvc_list.list_template'),
+            'page_parameter_name'  => $this->container->getParameter('kristofvc_list.page_parameter_name'),
+            'items_per_page' => $this->container->getParameter('kristofvc_list.items_per_page')
         );
     }
     
