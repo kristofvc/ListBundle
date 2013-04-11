@@ -4,21 +4,31 @@ namespace Kristofvc\ListBundle\Builder;
 
 class FilterBuilder
 {
-    protected $definedFilters = array();    
+    protected $definedFilters = array(); 
+    protected $extraParams = array();
+    
+    public function getExtraParams() 
+    {
+        return $this->extraParams;
+    }
 
     public function analyzeFilters($request, $configuration)
     {
+        $query = $request->query;
         $definedFilters = array();
-        foreach ($request->query as $key => $field) {
+        foreach ($query as $key => $field) {
             foreach ($configuration->getFilterFields() as $name) {
                 if (preg_match('%' . $name . '%', $key)) {
                     $tokens = explode($name, $key);
                     $definedFilters[$tokens[1]]['field'] = $tokens[0];
                     $definedFilters[$tokens[1]][$name] = $field;
+                    
+                    $query->remove($key);
                 }
             }
         }
         
+        $this->extraParams = $query;
         $this->definedFilters = $definedFilters;
     }
 
