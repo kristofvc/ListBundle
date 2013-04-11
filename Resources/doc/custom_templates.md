@@ -62,7 +62,7 @@ When overwriting a template you need to loop over the list of your objects. This
         {% endfor %}
     </tbody>
 </table>
-``
+```
 
 The above is the default template. Your columns are in builder.configuration.columns.
 In every column you can ask for the columnHeader, and if the column needs to be sorted with sortField. Sorting is done with the KnpPaginatorBundle, so you can look there for more information on how to make a column sortable.

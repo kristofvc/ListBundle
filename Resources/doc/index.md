@@ -132,3 +132,7 @@ Next render the list in you twig-file.
     {{ renderList('users.list.configuration') }}
 ```
  
+## Read more 
+- [configuration](https://github.com/kristofvc/KristofvcListBundle/blob/master/Resources/doc/configuration.md)
+- [custom filters](https://github.com/kristofvc/KristofvcListBundle/blob/master/Resources/doc/custom_filters.md)
+- [custom templates](https://github.com/kristofvc/KristofvcListBundle/blob/master/Resources/doc/custom_templates.md)
