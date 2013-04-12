@@ -72,7 +72,7 @@ The following example is for a list of users.
     {
         public function buildColumns(){
             $this->addColumn(new Column('Email', 'E-mail', true));
-            $this->addColumn(new Column('Name', 'Name', true, 'lastname, i.firstname'));
+            $this->addColumn(new Column('Name', 'Name', true, 'lastname, i.firstname', 'admin_user_edit', array('Id')));
             $this->addColumn(new Column('Groups', 'Groups', false));
             $this->addColumn(new Column('LastLogin', 'Last logged in at', true)); 
         }
@@ -102,6 +102,7 @@ The following example is for a list of users.
 As you can see, when you extend the AbstractListConfiguration, you need to implement some methods. 
 First one is a method to build the columns of your list. You first need to specify a name for each column. This name is also used for rendering the value for each object. So every column-name you defined needs a get-, has- or is-method in your object's class.
 Next is the header for the column. After that you can optionally set or the column needs sorting functionality and which fields you want to sort on (if no fields are defined, it takes the column-name).
+You can then also add a route en route-parameters to link values in the column to (see column 'name').
 
 Then you can add some actions to your list. In the example we have two actions, an edit action, and a delete action. An action takes a name, a route and routeparameters. Optionally you can define an icon, if the action needs confirmation with a dialog and which colour the button has.
 

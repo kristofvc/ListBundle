@@ -2,9 +2,9 @@ Custom templates
 ================
 
 The templates to render a list can be overwritten. 
-You can find some example templates in 'Resources/views/ListTemplates'.
+You can find some example templates in `Resources/views/ListTemplates`.
 
-When overwriting a template you need to loop over the list of your objects. This list is called 'pagination'.
+When overwriting a template you need to loop over the list of your objects. This list is called `pagination`.
 
 ```twig
 <table class="table table-striped">
@@ -65,7 +65,8 @@ When overwriting a template you need to loop over the list of your objects. This
 ```
 
 The above is the default template. Your columns are in builder.configuration.columns.
-In every column you can ask for the columnHeader, and if the column needs to be sorted with sortField. Sorting is done with the KnpPaginatorBundle, so you can look there for more information on how to make a column sortable.
+In every column you can ask for the columnHeader, and if the column needs to be sorted with `column.isSortable`. Sorting is done with the KnpPaginatorBundle, so you can look there for more information on how to make a column sortable.
+Field to be sorted on can be fetched with `column.sortField`.
 
 For every item in pagination you can render a value for every column.
 

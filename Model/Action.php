@@ -4,19 +4,16 @@ namespace Kristofvc\ListBundle\Model;
 
 class Action
 {
+
     protected $name;
-    
     protected $route;
     protected $routeParams;
-    
     protected $icon;
     protected $iconWhite;
     protected $btnColour;
-    
     protected $modal;
     protected $modalParams;
-    
-    
+
     public function __construct($name, $route, $routeParams = array(), $icon = null, $iconWhite = false, $btnColour = null, $modal = false, $modalParams = array())
     {
         $this->name = $name;
@@ -28,76 +25,93 @@ class Action
         $this->modal = $modal;
         $this->modalParams = $modalParams;
     }
-    
-    public function getName(){
+
+    public function getName()
+    {
         return $this->name;
     }
-    
-    public function setName($name){
+
+    public function setName($name)
+    {
         $this->name = $name;
         return $this;
     }
-    
-    public function getRoute(){
+
+    public function getRoute()
+    {
         return $this->route;
     }
-    
-    public function setRoute($route){
+
+    public function setRoute($route)
+    {
         $this->route = $route;
         return $this;
     }
-    
-    public function getRouteParams(){
+
+    public function getRouteParams()
+    {
         return $this->routeParams;
     }
-    
-    public function setRouteParams($routeParams){
+
+    public function setRouteParams($routeParams)
+    {
         $this->routeParams = $routeParams;
         return $this;
     }
-    
-    public function getIcon(){
+
+    public function getIcon()
+    {
         return $this->icon;
     }
-    
-    public function setIcon($icon){
+
+    public function setIcon($icon)
+    {
         $this->icon = $icon;
         return $this;
     }
-    
-    public function getIconWhite(){
+
+    public function getIconWhite()
+    {
         return $this->iconWhite;
     }
-    
-    public function setIconWhite($iconWhite){
+
+    public function setIconWhite($iconWhite)
+    {
         $this->iconWhite = $iconWhite;
         return $this;
     }
-    
-    public function getBtnColour(){
+
+    public function getBtnColour()
+    {
         return $this->btnColour;
     }
-    
-    public function setBtnColour($btnColour){
+
+    public function setBtnColour($btnColour)
+    {
         $this->btnColour = $btnColour;
         return $this;
     }
-    
-    public function getModal(){
+
+    public function getModal()
+    {
         return $this->modal;
     }
-    
-    public function setModal($modal){
+
+    public function setModal($modal)
+    {
         $this->modal = $modal;
         return $this;
     }
-    
-    public function getModalParams(){
+
+    public function getModalParams()
+    {
         return $this->modalParams;
     }
-    
-    public function setModalParams($modalParams){
+
+    public function setModalParams($modalParams)
+    {
         $this->modalParams = $modalParams;
         return $this;
     }
+
 }

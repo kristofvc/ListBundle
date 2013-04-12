@@ -116,11 +116,11 @@ class ListBuilder
         return $value;
     }
 
-    public function getRouteParams($item, Action $action)
+    public function getRouteParams($item, $params)
     {
         $routeParams = array();
 
-        foreach ($action->getRouteParams() as $param) {
+        foreach ($params as $param) {
             $routeParams[strtolower($param)] = $this->getValue($item, $param);
         }
 
@@ -137,11 +137,16 @@ class ListBuilder
     
     public function mergeParams(array $params){
         $defaultParams = $this->getDefaultParams();
-        foreach($defaultParams as $key => $value){
-            if(isset($params[$key])){
-                $defaultParams[$key] = $params[$key];
-            }
+        $configurationParams = $this->configuration->getDefaultParams();
+        
+        foreach($configurationParams as $key => $value){
+            $defaultParams[$key] = $configurationParams[$key];
         }
+                
+        foreach($params as $key => $value){
+            $defaultParams[$key] = $value;
+        }
+        
         $this->params = $defaultParams;
         return $this;
     }

@@ -7,13 +7,14 @@ use Kristofvc\ListBundle\Model\Filter;
 
 class StringFilter extends Filter
 {
+
     const COMP_EQUALS = 'equals';
     const COMP_DOESNOTEQUAL = 'doesnotequal';
     const COMP_CONTAINS = 'contains';
     const COMP_DOESNOTCONTAIN = 'doesnotcontain';
     const COMP_STARTSWITH = 'startswith';
     const COMP_ENDSWITH = 'endswith';
-    
+
     public function addFilter(QueryBuilder &$qb, $id, $data)
     {
         switch ($data['comparator']) {
@@ -53,4 +54,5 @@ class StringFilter extends Filter
     {
         return array('value', 'comparator');
     }
+
 }

@@ -1,7 +1,7 @@
 Custom filters
 ==============
 
-Let's make a DateFilter (which already exists)
+Let's make a DateFilter (which already exists).
 
 ## The class
 
