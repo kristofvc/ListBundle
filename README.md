@@ -54,4 +54,5 @@ TODO
 
 - More filters
 - More templates (not only bootstrap)
-- Cleanup
+- Custom empty value
+- Custom identifier for tables for subfields of the object

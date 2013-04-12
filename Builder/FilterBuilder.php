@@ -4,10 +4,11 @@ namespace Kristofvc\ListBundle\Builder;
 
 class FilterBuilder
 {
-    protected $definedFilters = array(); 
+
+    protected $definedFilters = array();
     protected $extraParams = array();
-    
-    public function getExtraParams() 
+
+    public function getExtraParams()
     {
         return $this->extraParams;
     }
@@ -22,12 +23,12 @@ class FilterBuilder
                     $tokens = explode($name, $key);
                     $definedFilters[$tokens[1]]['field'] = $tokens[0];
                     $definedFilters[$tokens[1]][$name] = $field;
-                    
+
                     $query->remove($key);
                 }
             }
         }
-        
+
         $this->extraParams = $query;
         $this->definedFilters = $definedFilters;
     }
@@ -44,11 +45,12 @@ class FilterBuilder
                             $data[$dataField] = $definedFilter[$dataField];
                         }
                     }
-                    
+
                     $filter->addFilterToBuilder($qb, $index, $data);
                     $index++;
                 }
             }
         }
     }
+
 }

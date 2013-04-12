@@ -6,7 +6,7 @@ use Kristofvc\ListBundle\Model\Column;
 use Kristofvc\ListBundle\Model\Action;
 use Kristofvc\ListBundle\Model\Filter;
 
-abstract class AbstractListConfiguration
+abstract class AbstractListConfiguration implements ListConfigurationInterface
 {
 
     protected $columns = array();
@@ -44,7 +44,6 @@ abstract class AbstractListConfiguration
     public function addFilter(Filter $filter)
     {
         $this->filterFields = array_merge($this->filterFields, $filter->getDataFields());
-
         $this->filters[] = $filter;
         return $this;
     }
@@ -52,6 +51,16 @@ abstract class AbstractListConfiguration
     public function getFilterFields()
     {
         return $this->filterFields;
+    }
+    
+    public function buildQuery(&$qb)
+    {
+        return $this;
+    }
+
+    public function getDefaultParams()
+    {
+        return array();
     }
 
     abstract public function buildColumns();
@@ -61,15 +70,4 @@ abstract class AbstractListConfiguration
     abstract public function buildFilters();
 
     abstract public function getRepository();
-
-    public function buildQuery(&$qb)
-    {
-        
-    }
-
-    public function getDefaultParams()
-    {
-        return array();
-    }
-
 }

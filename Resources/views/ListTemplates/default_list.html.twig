@@ -20,15 +20,15 @@
                 {% for column in builder.configuration.columns %}
                     <td>
                         {% if column.route is defined and column.route %}
-                            <a href="{{ path(column.route, builder.getRouteParams(item, column.routeParams)) }}">{{ builder.renderValue(item, column) }}</a>
+                            <a href="{{ path(column.route, helper.getRouteParams(item, column.routeParams)) }}">{{ helper.renderValue(item, column.name) }}</a>
                         {% else %}
-                            {{ builder.renderValue(item, column) }}
+                            {{ helper.renderValue(item, column.name) }}
                         {% endif %}
                     </td>
                 {% endfor %}
                 <td>
                     {% for action in builder.configuration.actions %}
-                        {% set routeParams = builder.getRouteParams(item, action.routeParams) %}
+                        {% set routeParams = helper.getRouteParams(item, action.routeParams) %}
                         {% if action.modal %}
                             <div id="actionmodal{{ item.id }}" class="modal hide fade">
                                 <div class="modal-header">

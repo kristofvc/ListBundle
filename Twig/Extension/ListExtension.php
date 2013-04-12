@@ -7,15 +7,14 @@ use Kristofvc\ListBundle\Builder\ListBuilder;
 
 class ListExtension extends \Twig_Extension
 {
+
     protected $container;
 
-    public function __construct(ContainerInterface $container){
+    public function __construct(ContainerInterface $container)
+    {
         $this->container = $container;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function initRuntime(\Twig_Environment $environment)
     {
         $this->environment = $environment;
@@ -24,39 +23,29 @@ class ListExtension extends \Twig_Extension
     public function getFunctions()
     {
         return array(
-            'renderList'  => new \Twig_Function_Method($this, 'renderList', array('is_safe' => array('html'))),
+            'renderList' => new \Twig_Function_Method($this, 'renderList', array('is_safe' => array('html'))),
         );
     }
 
-    public function renderList($service, array $params = array()){
-        $itemconfiguration = $this->container->get($service);
-        $request = $this->container->get('request');
-        
-        $route = $request->get('_route');        
-        $routeParams = $request->query->all();
-        
-        $builder = new ListBuilder($this->container, $itemconfiguration, $params);
-        $builder->getFilterBuilder()->analyzeFilters($this->container->get('request'), $itemconfiguration);
-        $itempagination = $builder->getPagination();     
-        
+    public function renderList($service, array $params = array())
+    {
+        $builder = new ListBuilder($this->container, $this->container->get($service), $params);
         $template = $this->environment->loadTemplate("KristofvcListBundle:ListExtension:renderList.html.twig");
-        
+        $request = $this->container->get('request');
+
         return $template->render(array_merge($params, array(
-            'builder' => $builder,
-            'pagination' => $itempagination,
-            'params' => $builder->getParams(),
-            'route' => $route,
-            'routeParams' => $routeParams
+                    'builder' => $builder,
+                    'pagination' => $builder->getPagination(),
+                    'params' => $builder->getParams(),
+                    'route' => $request->get('_route'),
+                    'routeParams' => $request->query->all(),
+                    'helper' => $this->container->get('rendering.helper')
         )));
     }
-    
-    /**
-     * Returns the name of the extension.
-     *
-     * @return string The extension name
-     */
+
     public function getName()
     {
         return 'list_extension';
     }
+
 }
