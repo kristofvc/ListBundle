@@ -27,12 +27,12 @@ class RenderingHelper
         return $value;
     }
 
-    public function renderValue($item, $columnName)
+    public function renderValue($item, $columnName, $emptyValue = ' ')
     {
         $value = $this->getValue($item, $columnName);
 
         if (empty($value)) {
-            return '';
+            return $emptyValue;
         }
 
         if ($value instanceof \DateTime) {

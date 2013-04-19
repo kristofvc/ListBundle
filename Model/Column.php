@@ -11,8 +11,9 @@ class Column
     protected $sortField;
     protected $route;
     protected $routeParams;
-
-    public function __construct($name, $columnHeader, $sortable = false, $sortField = null, $route = null, $routeParams = null)
+    protected $emptyValue;
+    
+    public function __construct($name, $columnHeader, $sortable = false, $sortField = null, $route = null, $routeParams = null, $emptyValue = null)
     {
         $this->name = $name;
         $this->columnHeader = $columnHeader;
@@ -26,6 +27,8 @@ class Column
 
         $this->route = $route;
         $this->routeParams = $routeParams;
+        
+        $this->emptyValue = $emptyValue;
     }
 
     public function getName()
@@ -90,6 +93,17 @@ class Column
     public function setRouteParams($routeParams)
     {
         $this->routeParams = $routeParams;
+    }
+    
+    public function getEmptyValue()
+    {
+        return $this->emptyValue;
+    }
+
+    public function setEmptyValue($emptyValue)
+    {
+        $this->emptyValue = $emptyValue;
+        return $this;
     }
 
 }

@@ -41,6 +41,7 @@ Let's make a DateFilter (which already exists).
             return array('value', 'comparator');
         }
     }
+    ?>
 ```
 
 We have the getDataFields method. In this method you can define the names of the fields that have to be filled in to make the filter work.

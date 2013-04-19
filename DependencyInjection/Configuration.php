@@ -31,6 +31,9 @@ class Configuration implements ConfigurationInterface
                 ->scalarNode('list_template')
                     ->defaultValue('KristofvcListBundle:ListTemplates:default_list.html.twig')
                 ->end()
+                ->scalarNode('column_empty_value')
+                    ->defaultValue(' ')
+                ->end()
             ->end();
 
         return $treeBuilder;

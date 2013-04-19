@@ -25,6 +25,13 @@ class ListBuilder
 
         $this->mergeParams($params)
              ->buildList();
+        
+        foreach($this->configuration->getColumns() as $column){
+            $emptyValue = $column->getEmptyValue();
+            if(empty($emptyValue)){
+                $column->setEmptyValue($this->params['column_empty_value']);
+            }
+        }
     }
 
     public function getConfiguration()
@@ -47,7 +54,8 @@ class ListBuilder
         return array(
             'list_template' => $this->container->getParameter('kristofvc_list.list_template'),
             'page_parameter_name' => $this->container->getParameter('kristofvc_list.page_parameter_name'),
-            'items_per_page' => $this->container->getParameter('kristofvc_list.items_per_page')
+            'items_per_page' => $this->container->getParameter('kristofvc_list.items_per_page'),
+            'column_empty_value' => $this->container->getParameter('kristofvc_list.column_empty_value')
         );
     }
 

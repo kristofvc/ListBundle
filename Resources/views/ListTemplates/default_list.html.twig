@@ -20,9 +20,9 @@
                 {% for column in builder.configuration.columns %}
                     <td>
                         {% if column.route is defined and column.route %}
-                            <a href="{{ path(column.route, helper.getRouteParams(item, column.routeParams)) }}">{{ helper.renderValue(item, column.name) }}</a>
+                            <a href="{{ path(column.route, helper.getRouteParams(item, column.routeParams)) }}">{{ helper.renderValue(item, column.name, column.emptyValue) }}</a>
                         {% else %}
-                            {{ helper.renderValue(item, column.name) }}
+                            {{ helper.renderValue(item, column.name, column.emptyValue) }}
                         {% endif %}
                     </td>
                 {% endfor %}

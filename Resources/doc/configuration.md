@@ -10,6 +10,7 @@ You can overwrite the default configuration by adding the following in app/confi
         items_per_page: 15 # how many rows does your list render per page
         page_parameter_name: page # the url-parametername to switch between pages in your list
         list_template: KristofvcListBundle:ListTemplates:default_list.html.twig # the template for rendering you list.
+        column_empty_value:
 ```
 
 Above we've added the config with the default values. All options in the configuration are optional. 
@@ -26,6 +27,7 @@ You can add a method with parameters to your list-configuration.
     {
         return array(
             'items_per_page' => 20
+            'column_empty_value' => 'N/A'
         );
     }
 ```
