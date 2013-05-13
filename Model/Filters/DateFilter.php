@@ -15,11 +15,11 @@ class DateFilter extends Filter
     {
         switch ($data['comparator']) {
             case self::COMP_BEFORE:
-                $qb->andWhere($qb->expr()->lte('i.' . $this->field, ':var_' . $id))
+                $qb->andWhere($qb->expr()->lte($this->identifier . '.' . $this->field, ':var_' . $id))
                    ->setParameter('var_' . $id, $data['value']);
                 break;
             case self::COMP_AFTER:
-                $qb->andWhere($qb->expr()->gte('i.' . $this->field, ':var_' . $id))
+                $qb->andWhere($qb->expr()->gte($this->identifier . '.' . $this->field, ':var_' . $id))
                    ->setParameter('var_' . $id, $data['value']);
                 break;
         }

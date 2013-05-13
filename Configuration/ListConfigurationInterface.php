@@ -5,6 +5,7 @@ namespace Kristofvc\ListBundle\Configuration;
 use Kristofvc\ListBundle\Model\Column;
 use Kristofvc\ListBundle\Model\Action;
 use Kristofvc\ListBundle\Model\Filter;
+use Doctrine\ORM\QueryBuilder;
 
 interface ListConfigurationInterface
 {
@@ -23,7 +24,7 @@ interface ListConfigurationInterface
 
     public function getFilterFields();
 
-    public function buildQuery(&$qb);
+    public function buildQuery(QueryBuilder &$qb);
 
     public function getDefaultParams();
 

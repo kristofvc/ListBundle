@@ -7,8 +7,11 @@ use Doctrine\ORM\PersistentCollection;
 class RenderingHelper
 {
 
-    public function getValue($item, $columnName)
+    public function getValue($item, $columnName, $parentField = null)
     {
+        if (!is_null($parentField)) {
+            $item = $this->getValue($item, $parentField);
+        }
         if (method_exists($item, $columnName)) {
             $value = $item->$columnName();
         } elseif (method_exists($item, 'get' . $columnName)) {
@@ -27,9 +30,9 @@ class RenderingHelper
         return $value;
     }
 
-    public function renderValue($item, $columnName, $emptyValue = ' ')
+    public function renderValue($item, $columnName, $emptyValue = ' ', $parentField = null)
     {
-        $value = $this->getValue($item, $columnName);
+        $value = $this->getValue($item, $columnName, $parentField);
 
         if (empty($value)) {
             return $emptyValue;
@@ -60,4 +63,5 @@ class RenderingHelper
 
         return $routeParams;
     }
+
 }

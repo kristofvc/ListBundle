@@ -12,12 +12,13 @@ class Column
     protected $route;
     protected $routeParams;
     protected $emptyValue;
+    protected $parentField;
     protected $params;
-    
+
     public function __construct($name, $columnHeader, $params = array())
     {
         // 'sortable' => false, 'sortField' => null, 'route' => null, 'routeParams' => null, 'column_empty_value' => null
-        
+
         $this->name = $name;
         $this->columnHeader = $columnHeader;
 
@@ -30,9 +31,10 @@ class Column
 
         $this->route = isset($params['route']) ? $params['route'] : null;
         $this->routeParams = isset($params['routeParams']) ? $params['routeParams'] : null;
-        
+
         $this->emptyValue = isset($params['column_empty_value']) ? $params['column_empty_value'] : null;
-        
+        $this->parentField = isset($params['parentField']) ? $params['parentField'] : null;
+
         $this->params = $params;
     }
 
@@ -99,7 +101,7 @@ class Column
     {
         $this->routeParams = $routeParams;
     }
-    
+
     public function getEmptyValue()
     {
         return $this->emptyValue;
@@ -110,7 +112,18 @@ class Column
         $this->emptyValue = $emptyValue;
         return $this;
     }
-    
+
+    public function getParentField()
+    {
+        return $this->parentField;
+    }
+
+    public function setParentField($parentField)
+    {
+        $this->parentField = $parentField;
+        return $this;
+    }
+
     public function getParams()
     {
         return $this->params;

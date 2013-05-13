@@ -19,28 +19,28 @@ class StringFilter extends Filter
     {
         switch ($data['comparator']) {
             case self::COMP_EQUALS:
-                $qb->andWhere($qb->expr()->eq('i.' . $this->field, ':var_' . $id))
+                $qb->andWhere($qb->expr()->eq($this->identifier . '.' . $this->field, ':var_' . $id))
                    ->setParameter('var_' . $id, $data['value']);
                 break;
             case self::COMP_DOESNOTEQUAL:
-                $qb->andWhere($qb->expr()->neq('i.' . $this->field, ':var_' . $id))
+                $qb->andWhere($qb->expr()->neq($this->identifier . '.' . $this->field, ':var_' . $id))
                    ->setParameter('var_' . $id, $data['value']);
                 break;
             case self::COMP_CONTAINS:
-                $qb->andWhere($qb->expr()->like('i.' . $this->field, ':var_' . $id))
+                $qb->andWhere($qb->expr()->like($this->identifier . '.' . $this->field, ':var_' . $id))
                    ->setParameter('var_' . $id, '%' . $data['value'] . '%');
                 break;
             case self::COMP_DOESNOTCONTAIN:
-                $qb->andWhere('i.' . $this->field . ' NOT LIKE :var_' . $id)
+                $qb->andWhere($this->identifier . '.' . $this->field . ' NOT LIKE :var_' . $id)
                    ->setParameter('var_' . $id, '%' . $data['value'] . '%');
                 break;
             case self::COMP_STARTSWITH:
-                $qb->andWhere($qb->expr()->like('i.' . $this->field, ':var_' . $id))
+                $qb->andWhere($qb->expr()->like($this->identifier . '.' . $this->field, ':var_' . $id))
                    ->setParameter('var_' . $id, $data['value'] . '%');
                 break;
             case self::COMP_ENDSWITH:
-                $qb->andWhere($qb->expr()->like('i.' . $this->field, ':var_' . $id))
-                   ->setParameter('var_' . $id, '%' . $value);
+                $qb->andWhere($qb->expr()->like($this->identifier . '.' . $this->field, ':var_' . $id))
+                   ->setParameter('var_' . $id, '%' . $data['value']);
                 break;
         }
     }
