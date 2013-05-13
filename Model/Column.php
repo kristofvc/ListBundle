@@ -12,23 +12,28 @@ class Column
     protected $route;
     protected $routeParams;
     protected $emptyValue;
+    protected $params;
     
-    public function __construct($name, $columnHeader, $sortable = false, $sortField = null, $route = null, $routeParams = null, $emptyValue = null)
+    public function __construct($name, $columnHeader, $params = array())
     {
+        // 'sortable' => false, 'sortField' => null, 'route' => null, 'routeParams' => null, 'column_empty_value' => null
+        
         $this->name = $name;
         $this->columnHeader = $columnHeader;
 
-        $this->sortable = $sortable;
-        if (!is_null($sortField)) {
-            $this->sortField = $sortField;
+        $this->sortable = isset($params['sortable']) ? $params['sortable'] : false;
+        if (isset($params['sortField']) && !is_null($params['sortField'])) {
+            $this->sortField = $params['sortField'];
         } else {
             $this->sortField = lcfirst($this->name);
         }
 
-        $this->route = $route;
-        $this->routeParams = $routeParams;
+        $this->route = isset($params['route']) ? $params['route'] : null;
+        $this->routeParams = isset($params['routeParams']) ? $params['routeParams'] : null;
         
-        $this->emptyValue = $emptyValue;
+        $this->emptyValue = isset($params['column_empty_value']) ? $params['column_empty_value'] : null;
+        
+        $this->params = $params;
     }
 
     public function getName()
@@ -103,6 +108,17 @@ class Column
     public function setEmptyValue($emptyValue)
     {
         $this->emptyValue = $emptyValue;
+        return $this;
+    }
+    
+    public function getParams()
+    {
+        return $this->params;
+    }
+
+    public function setParams($params)
+    {
+        $this->params = $params;
         return $this;
     }
 
