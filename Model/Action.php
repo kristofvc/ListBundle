@@ -13,17 +13,22 @@ class Action
     protected $btnColour;
     protected $modal;
     protected $modalParams;
+    protected $params;
 
-    public function __construct($name, $route, $routeParams = array(), $icon = null, $iconWhite = false, $btnColour = null, $modal = false, $modalParams = array())
+    public function __construct($name, $route, $routeParams = array(), $params = array())
     {
+        // $icon = null, $iconWhite = false, $btnColour = null, $modal = false, $modalParams = array()
+        
         $this->name = $name;
         $this->route = $route;
         $this->routeParams = $routeParams;
-        $this->icon = $icon;
-        $this->iconWhite = $iconWhite;
-        $this->btnColour = $btnColour;
-        $this->modal = $modal;
-        $this->modalParams = $modalParams;
+        $this->icon = isset($params['icon']) ? $params['icon'] : null;
+        $this->iconWhite = isset($params['iconWhite']) ? $params['iconWhite'] : false;
+        $this->btnColour = isset($params['btnColour']) ? $params['btnColour'] : null;
+        $this->modal = isset($params['modal']) ? $params['modal'] : false;
+        $this->modalParams = isset($params['modalParams']) ? $params['modalParams'] : array();
+        
+        $this->params = $params;
     }
 
     public function getName()
@@ -111,6 +116,17 @@ class Action
     public function setModalParams($modalParams)
     {
         $this->modalParams = $modalParams;
+        return $this;
+    }
+    
+    public function getParams()
+    {
+        return $this->params;
+    }
+
+    public function setParams($params)
+    {
+        $this->params = $params;
         return $this;
     }
 
