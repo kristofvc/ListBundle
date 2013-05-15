@@ -1,3 +1,6 @@
+{% set filtercount = builder.configuration.filters | length %}
+
+{% if filtercount > 0 %}
 <div class="well">
     <form action="{{ path(route,routeParams) }}" method="get" name="filters" id="filtersform" class="form-horizontal form-inline">
         {% for key, routeParam in builder.filterBuilder.extraParams %}
@@ -81,3 +84,4 @@
         }); 	
     </script>
 </div>
+{% endif %}
