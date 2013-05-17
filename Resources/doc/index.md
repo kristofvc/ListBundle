@@ -1,4 +1,4 @@
-Getting Started With The KristofvcListBundle
+Getting Started With The ListBundle
 ============================================
 
 ## Prerequisites
@@ -9,20 +9,20 @@ This version of the bundle requires Symfony 2.2+.
 
 Installation is a quick process:
 
-1. Download KristofvcListBundle using composer
+1. Download ListBundle using composer
 2. Enable the Bundle
 3. Create your list's configuration
 4. Add the configuration as a service
 5. Render the list
 
-### Step 1: Download KristofvcListBundle using composer
+### Step 1: Download ListBundle using composer
 
 Add KristofvcListBundle in your composer.json:
 
 ```js
 {
     "require": {
-        "kristofvc/kristofvc-list-bundle": "dev-master"
+        "kristofvc/list-bundle": "dev-master"
     }
 }
 ```
@@ -30,7 +30,7 @@ Add KristofvcListBundle in your composer.json:
 Now tell composer to download the bundle by running the command:
 
 ``` bash
-$ php composer.phar update kristofvc/kristofvc-list-bundle
+$ php composer.phar update kristofvc/list-bundle
 ```
 
 Composer will install the bundle to your project's `vendor/kristofvc` directory.
@@ -111,7 +111,7 @@ You can also define on which fields you want filtering. For each field you can c
 - StringFilter
 - DateFilter
 - ...
-- [You can also define your own filters. Look here for more information.] (https://github.com/kristofvc/KristofvcListBundle/blob/master/Resources/doc/custom_filters.md) 
+- [You can also define your own filters. Look here for more information.] (https://github.com/kristofvc/ListBundle/blob/master/Resources/doc/custom_filters.md) 
 
 Next you define which entity you want to build your list with and you optionally define some extra parameters for your query.
 
@@ -134,6 +134,6 @@ Next render the list in you twig-file.
 ```
  
 ## Read more 
-- [configuration](https://github.com/kristofvc/KristofvcListBundle/blob/master/Resources/doc/configuration.md)
-- [custom filters](https://github.com/kristofvc/KristofvcListBundle/blob/master/Resources/doc/custom_filters.md)
-- [custom templates](https://github.com/kristofvc/KristofvcListBundle/blob/master/Resources/doc/custom_templates.md)
+- [configuration](https://github.com/kristofvc/ListBundle/blob/master/Resources/doc/configuration.md)
+- [custom filters](https://github.com/kristofvc/ListBundle/blob/master/Resources/doc/custom_filters.md)
+- [custom templates](https://github.com/kristofvc/ListBundle/blob/master/Resources/doc/custom_templates.md)

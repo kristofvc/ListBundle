@@ -1,5 +1,5 @@
-KristofvcListBundle [![Build Status](https://travis-ci.org/kristofvc/KristofvcListBundle.png?branch=master)](https://travis-ci.org/kristofvc/KristofvcListBundle)
-===================
+ListBundle [![Build Status](https://travis-ci.org/kristofvc/ListBundle.png?branch=master)](https://travis-ci.org/kristofvc/ListBundle)
+==========
 
 This bundle is used for rendering a list of objects. After setting up a configuration for your list, you can sort columns, filter items and view paginated data.
 
@@ -17,12 +17,12 @@ Documentation
 The documentation is stored in the `Resources/doc/index.md`
 file in this bundle:
 
-[Read the Documentation for master](https://github.com/kristofvc/KristofvcListBundle/blob/master/Resources/doc/index.md)
+[Read the Documentation for master](https://github.com/kristofvc/ListBundle/blob/master/Resources/doc/index.md)
 
 Installation
 ------------
 
-All the installation instructions are located in the [documentation](https://github.com/kristofvc/KristofvcListBundle/blob/master/Resources/doc/index.md).
+All the installation instructions are located in the [documentation](https://github.com/kristofvc/ListBundle/blob/master/Resources/doc/index.md).
 
 License
 -------
@@ -35,12 +35,12 @@ About
 -----
 
 [Kristof Van Cauwenbergh](https://github.com/kristofvc)'s initiative.
-See also the list of [contributors](https://github.com/kristofvc/KristofvcListBundle/contributors).
+See also the list of [contributors](https://github.com/kristofvc/ListBundle/contributors).
 
 Reporting an issue or a feature request
 ---------------------------------------
 
-Issues and feature requests are tracked in the [Github issue tracker](https://github.com/kristofvc/KristofvcListBundle/issues).
+Issues and feature requests are tracked in the [Github issue tracker](https://github.com/kristofvc/ListBundle/issues).
 
 When reporting a bug, it may be a good idea to reproduce it in a basic project
 built using the [Symfony Standard Edition](https://github.com/symfony/symfony-standard)
@@ -54,4 +54,3 @@ TODO
 
 - More filters
 - More templates (not only bootstrap)
-- Custom identifier for tables for subfields of the object
