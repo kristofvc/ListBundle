@@ -21,7 +21,7 @@
                         <option value="{{ filter.field }}">{{ filter.name }}</option>
                     {% endfor %}
                 </select>
-                <a class="btn btn-mini btn-success addFilterbutton" href="#" data-count="{{ count + 1 }}" ><i class="icon-plus icon-white"></i></a>         
+                <a class="btn btn-mini btn-success addFilterbutton{{ builder.configuration.name }}" href="#" data-count="{{ count + 1 }}" ><i class="icon-plus icon-white"></i></a>         
                 <button type="submit" class="btn btn-mini btn-info"><i class="icon-filter icon-white"></i> filter</button>
             </div>
         </div>
@@ -58,7 +58,7 @@
         $(document).ready(function() { 
             initDatePickers();       
             
-            $('.addFilterbutton').on('click', function(e) {
+            $('.addFilterbutton{{ builder.configuration.name }}').on('click', function(e) {
                 e.preventDefault();
 
                 var type = $('.filteringtype').val();

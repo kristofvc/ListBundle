@@ -97,7 +97,7 @@ class ListBuilder
 
     public function getQuery()
     {
-        $em = $this->container->get('doctrine')->getEntityManager();
+        $em = $this->container->get('doctrine')->getManager();
         $qb = $em->createQueryBuilder();
         $qb->select('i')
                 ->from($this->configuration->getRepository(), 'i');

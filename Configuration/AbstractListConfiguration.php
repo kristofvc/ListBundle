@@ -71,4 +71,6 @@ abstract class AbstractListConfiguration implements ListConfigurationInterface
     abstract public function buildFilters();
 
     abstract public function getRepository();
+    
+    abstract public function getName();
 }
