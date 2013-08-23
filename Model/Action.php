@@ -4,7 +4,6 @@ namespace Kristofvc\ListBundle\Model;
 
 class Action
 {
-
     protected $name;
     protected $route;
     protected $routeParams;
@@ -129,5 +128,4 @@ class Action
         $this->params = $params;
         return $this;
     }
-
 }

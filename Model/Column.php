@@ -4,7 +4,6 @@ namespace Kristofvc\ListBundle\Model;
 
 class Column
 {
-
     protected $name;
     protected $columnHeader;
     protected $sortable;
@@ -134,5 +133,4 @@ class Column
         $this->params = $params;
         return $this;
     }
-
 }

@@ -10,7 +10,6 @@ use Kristofvc\ListBundle\Model\Action;
 
 class ListBuilder
 {
-
     protected $container;
     protected $configuration;
     protected $filterBuilder;
@@ -26,9 +25,9 @@ class ListBuilder
         $this->mergeParams($params)
              ->buildList();
         
-        foreach($this->configuration->getColumns() as $column){
+        foreach ($this->configuration->getColumns() as $column) {
             $emptyValue = $column->getEmptyValue();
-            if(empty($emptyValue)){
+            if (empty($emptyValue)) {
                 $column->setEmptyValue($this->params['column_empty_value']);
             }
         }
@@ -89,7 +88,12 @@ class ListBuilder
     {
         $paginator = $this->container->get('knp_paginator');
         $pagination = $paginator->paginate(
-                $this->getQuery(), $this->container->get('request')->query->get($this->params['page_parameter_name'], 1), $this->params['items_per_page'], array('pageParameterName' => $this->params['page_parameter_name'])
+            $this->getQuery(),
+            $this->container->get('request')->query->get($this->params['page_parameter_name'], 1),
+            $this->params['items_per_page'],
+            array(
+                'pageParameterName' => $this->params['page_parameter_name']
+            )
         );
 
         return $pagination;
@@ -99,13 +103,11 @@ class ListBuilder
     {
         $em = $this->container->get('doctrine')->getManager();
         $qb = $em->createQueryBuilder();
-        $qb->select('i')
-                ->from($this->configuration->getRepository(), 'i');
+        $qb->select('i')->from($this->configuration->getRepository(), 'i');
 
         $this->configuration->buildQuery($qb);
         $this->filterBuilder->addFilters($qb, $this->configuration);
 
         return $qb->getQuery();
     }
-
 }

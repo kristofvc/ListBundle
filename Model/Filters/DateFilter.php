@@ -7,7 +7,6 @@ use Kristofvc\ListBundle\Model\Filter;
 
 class DateFilter extends Filter
 {
-
     const COMP_BEFORE = 'before';
     const COMP_AFTER = 'after';
 
@@ -34,5 +33,4 @@ class DateFilter extends Filter
     {
         return array('value', 'comparator');
     }
-
 }

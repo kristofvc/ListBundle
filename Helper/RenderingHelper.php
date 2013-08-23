@@ -63,5 +63,4 @@ class RenderingHelper
 
         return $routeParams;
     }
-
 }

@@ -9,7 +9,6 @@ use Doctrine\ORM\QueryBuilder;
 
 abstract class AbstractListConfiguration implements ListConfigurationInterface
 {
-
     protected $columns = array();
     protected $actions = array();
     protected $filters = array();

@@ -7,7 +7,6 @@ use Kristofvc\ListBundle\Builder\ListBuilder;
 
 class ListExtension extends \Twig_Extension
 {
-
     protected $container;
 
     public function __construct(ContainerInterface $container)
@@ -33,19 +32,23 @@ class ListExtension extends \Twig_Extension
         $template = $this->environment->loadTemplate("KristofvcListBundle:ListExtension:renderList.html.twig");
         $request = $this->container->get('request');
 
-        return $template->render(array_merge($params, array(
+        return $template->render(
+            array_merge(
+                $params,
+                array(
                     'builder' => $builder,
                     'pagination' => $builder->getPagination(),
                     'params' => $builder->getParams(),
                     'route' => $request->get('_route'),
                     'routeParams' => $request->query->all(),
                     'helper' => $this->container->get('rendering.helper')
-        )));
+                )
+            )
+        );
     }
 
     public function getName()
     {
         return 'list_extension';
     }
-
 }

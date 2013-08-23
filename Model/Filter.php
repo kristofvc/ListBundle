@@ -6,7 +6,6 @@ use Doctrine\ORM\QueryBuilder;
 
 abstract class Filter
 {
-
     protected $name;
     protected $field;
     protected $data;
@@ -70,9 +69,9 @@ abstract class Filter
         $this->addFilter($qb, $id, $data);
     }
 
-    public abstract function addFilter(QueryBuilder &$qb, $id, $data);
+    abstract public function addFilter(QueryBuilder &$qb, $id, $data);
 
-    public abstract function getTemplate();
+    abstract public function getTemplate();
 
-    public abstract function getDataFields();
+    abstract public function getDataFields();
 }

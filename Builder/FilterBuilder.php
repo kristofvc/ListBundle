@@ -4,7 +4,6 @@ namespace Kristofvc\ListBundle\Builder;
 
 class FilterBuilder
 {
-
     protected $definedFilters = array();
     protected $extraParams = array();
 
@@ -52,5 +51,4 @@ class FilterBuilder
             }
         }
     }
-
 }

@@ -9,7 +9,6 @@ use Doctrine\ORM\QueryBuilder;
 
 interface ListConfigurationInterface
 {
-
     public function getColumns();
 
     public function addColumn(Column $column);

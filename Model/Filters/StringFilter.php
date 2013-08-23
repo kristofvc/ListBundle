@@ -7,7 +7,6 @@ use Kristofvc\ListBundle\Model\Filter;
 
 class StringFilter extends Filter
 {
-
     const COMP_EQUALS = 'equals';
     const COMP_DOESNOTEQUAL = 'doesnotequal';
     const COMP_CONTAINS = 'contains';
@@ -54,5 +53,4 @@ class StringFilter extends Filter
     {
         return array('value', 'comparator');
     }
-
 }
