@@ -23,11 +23,15 @@
                             {% if column.route is defined and column.route %}
                                 <a href="{{ path(column.route, helper.getRouteParams(item, column.routeParams)) }}">
                             {% endif %}
+<<<<<<< Updated upstream
                             {{ helper.renderValue(item, column.name, column.emptyValue, column.parentField) }}
                             {% if column.route is defined and column.route %}
                                 </a>
                             {% endif %}
                         </td>
+=======
+                        </a>
+>>>>>>> Stashed changes
                     {% endfor %}
                     {% if builder.configuration.actions|length > 0 %}
                     <td>

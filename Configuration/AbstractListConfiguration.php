@@ -5,7 +5,6 @@ namespace Kristofvc\ListBundle\Configuration;
 use Kristofvc\ListBundle\Model\Column;
 use Kristofvc\ListBundle\Model\Action;
 use Kristofvc\ListBundle\Model\Filter;
-use Doctrine\ORM\QueryBuilder;
 
 abstract class AbstractListConfiguration implements ListConfigurationInterface
 {
@@ -51,11 +50,6 @@ abstract class AbstractListConfiguration implements ListConfigurationInterface
     public function getFilterFields()
     {
         return $this->filterFields;
-    }
-    
-    public function buildQuery(QueryBuilder &$qb)
-    {
-        return $this;
     }
 
     public function getDefaultParams()

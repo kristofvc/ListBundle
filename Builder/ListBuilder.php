@@ -101,13 +101,6 @@ class ListBuilder
 
     public function getQuery()
     {
-        $em = $this->container->get('doctrine')->getManager();
-        $qb = $em->createQueryBuilder();
-        $qb->select('i')->from($this->configuration->getRepository(), 'i');
-
-        $this->configuration->buildQuery($qb);
-        $this->filterBuilder->addFilters($qb, $this->configuration);
-
-        return $qb->getQuery();
+        return $this->configuration->getQuery($this->container, $this->filterBuilder, $this->configuration);
     }
 }

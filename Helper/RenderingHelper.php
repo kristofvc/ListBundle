@@ -2,7 +2,7 @@
 
 namespace Kristofvc\ListBundle\Helper;
 
-use Doctrine\ORM\PersistentCollection;
+use Doctrine\Common\Collections\Collection as PersistentCollection;
 
 class RenderingHelper
 {
