@@ -13,6 +13,7 @@ class Column
     protected $emptyValue;
     protected $parentField;
     protected $params;
+    protected $boolean;
 
     public function __construct($name, $columnHeader, $params = array())
     {
@@ -27,6 +28,8 @@ class Column
         } else {
             $this->sortField = lcfirst($this->name);
         }
+
+        $this->boolean = isset($params['boolean']) ? $params['boolean'] : false;
 
         $this->route = isset($params['route']) ? $params['route'] : null;
         $this->routeParams = isset($params['routeParams']) ? $params['routeParams'] : null;
@@ -79,6 +82,11 @@ class Column
     {
         $this->sortable = $sortable;
         return $this;
+    }
+
+    public function isBoolean()
+    {
+        return $this->boolean;
     }
 
     public function getRoute()
