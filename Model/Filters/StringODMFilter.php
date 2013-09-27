@@ -3,9 +3,9 @@
 namespace Kristofvc\ListBundle\Model\Filters;
 
 use Doctrine\ODM\MongoDB\Query\Builder;
-use Kristofvc\ListBundle\Model\Filter;
+use Kristofvc\ListBundle\Model\ODMFilter;
 
-class StringODMFilter extends Filter
+class StringODMFilter extends ODMFilter
 {
     const COMP_EQUALS = 'equals';
     const COMP_DOESNOTEQUAL = 'doesnotequal';

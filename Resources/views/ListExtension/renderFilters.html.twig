@@ -29,13 +29,13 @@
         </div>
         {% for filter in builder.configuration.filters %}
             {% for key, data in filter.data %}
-                <div style="margin-top: -20px;" class="form-inline">
+                <div class="row" style="margin-top: -0px;">
                     {% include filter.getTemplate() with { 'filter': filter, 'index': key, 'data': data } %}
                 </div>
             {% endfor %}
         {% endfor %}
         <div class="clearfix"></div>
-        
+
     </form>
 
     <div id="filterdefinitions" style="display:none;">

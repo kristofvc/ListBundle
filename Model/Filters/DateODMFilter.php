@@ -2,10 +2,10 @@
 
 namespace Kristofvc\ListBundle\Model\Filters;
 
-use Doctrine\MongoDB\Query\Builder;
-use Kristofvc\ListBundle\Model\Filter;
+use Doctrine\ODM\MongoDB\Query\Builder;
+use Kristofvc\ListBundle\Model\ODMFilter;
 
-class DateODMFilter extends Filter
+class DateODMFilter extends ODMFilter
 {
     const COMP_BEFORE = 'before';
     const COMP_AFTER = 'after';
