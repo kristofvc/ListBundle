@@ -2,24 +2,22 @@
 
 namespace Kristofvc\ListBundle\Model\Filters;
 
-use Doctrine\ORM\QueryBuilder;
+use Doctrine\MongoDB\Query\Builder;
 use Kristofvc\ListBundle\Model\Filter;
 
-class DateFilter extends Filter
+class DateODMFilter extends Filter
 {
     const COMP_BEFORE = 'before';
     const COMP_AFTER = 'after';
 
-    public function addFilter(QueryBuilder &$qb, $id, $data)
+    public function addFilter(Builder &$qb, $id, $data)
     {
         switch ($data['comparator']) {
             case self::COMP_BEFORE:
-                $qb->andWhere($qb->expr()->lte($this->identifier . '.' . $this->field, ':var_' . $id))
-                   ->setParameter('var_' . $id, $data['value']);
+                $qb->field($this->field)->lte($data['value']);
                 break;
             case self::COMP_AFTER:
-                $qb->andWhere($qb->expr()->gte($this->identifier . '.' . $this->field, ':var_' . $id))
-                   ->setParameter('var_' . $id, $data['value']);
+                $qb->field($this->field)->gte($data['value']);
                 break;
         }
     }

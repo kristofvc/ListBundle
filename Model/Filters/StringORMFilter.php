@@ -5,7 +5,7 @@ namespace Kristofvc\ListBundle\Model\Filters;
 use Doctrine\ORM\QueryBuilder;
 use Kristofvc\ListBundle\Model\Filter;
 
-class StringFilter extends Filter
+class StringORMFilter extends Filter
 {
     const COMP_EQUALS = 'equals';
     const COMP_DOESNOTEQUAL = 'doesnotequal';

@@ -70,7 +70,7 @@
                 $(this).attr('data-count', ++typeCount);
 
                 var newFieldset = $('<div></div>').html(newWidget);
-                $(e.delegateTarget).parent().parent().after(newFieldset);
+                $(e.delegateTarget).parent().parent().append(newFieldset);
 
                 $('.action-remove').on('click', function(e) {
                     e.preventDefault();

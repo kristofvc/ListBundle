@@ -45,7 +45,7 @@ class FilterBuilder
                         }
                     }
 
-                    $filter->addFilterToBuilder($qb, $index, $data);
+                    $filter->addFilter($qb, $index, $data);
                     $index++;
                 }
             }

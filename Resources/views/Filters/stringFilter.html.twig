@@ -3,31 +3,30 @@
 </div>
 <div class="col-lg-3">
         <select class="form-control" name="{{filter.field}}comparator{% if index is defined and index %}{{index}}{% else %}__index__{% endif %}">
-            <option value="{{ constant("Kristofvc\\ListBundle\\Model\\Filters\\StringFilter::COMP_EQUALS") }}" {% if data.comparator is defined and data.comparator == constant("Kristofvc\\ListBundle\\Model\\Filters\\StringFilter::COMP_EQUALS") %} selected="selected" {% endif %} >
+            <option value="{{ constant("Kristofvc\\ListBundle\\Model\\Filters\\StringORMFilter::COMP_EQUALS") }}" {% if data.comparator is defined and data.comparator == constant("Kristofvc\\ListBundle\\Model\\Filters\\StringORMFilter::COMP_EQUALS") %} selected="selected" {% endif %} >
                 {{ "equals" | trans }}
             </option>
-            <option value="{{ constant("Kristofvc\\ListBundle\\Model\\Filters\\StringFilter::COMP_DOESNOTEQUAL") }}" {% if data.comparator is defined and data.comparator == constant("Kristofvc\\ListBundle\\Model\\Filters\\StringFilter::COMP_DOESNOTEQUAL") %} selected="selected" {% endif %} >
+            <option value="{{ constant("Kristofvc\\ListBundle\\Model\\Filters\\StringORMFilter::COMP_DOESNOTEQUAL") }}" {% if data.comparator is defined and data.comparator == constant("Kristofvc\\ListBundle\\Model\\Filters\\StringORMFilter::COMP_DOESNOTEQUAL") %} selected="selected" {% endif %} >
                 {{ "doesn't equal" | trans }}
             </option>
-            <option value="{{ constant("Kristofvc\\ListBundle\\Model\\Filters\\StringFilter::COMP_CONTAINS") }}" {% if data.comparator is defined and data.comparator == constant("Kristofvc\\ListBundle\\Model\\Filters\\StringFilter::COMP_CONTAINS") %} selected="selected" {% endif %} >
+            <option value="{{ constant("Kristofvc\\ListBundle\\Model\\Filters\\StringORMFilter::COMP_CONTAINS") }}" {% if data.comparator is defined and data.comparator == constant("Kristofvc\\ListBundle\\Model\\Filters\\StringORMFilter::COMP_CONTAINS") %} selected="selected" {% endif %} >
                 {{ "contains" | trans }}
             </option>
-            <option value="{{ constant("Kristofvc\\ListBundle\\Model\\Filters\\StringFilter::COMP_DOESNOTCONTAIN") }}" {% if data.comparator is defined and data.comparator == constant("Kristofvc\\ListBundle\\Model\\Filters\\StringFilter::COMP_DOESNOTCONTAIN") %} selected="selected" {% endif %} >
+            <option value="{{ constant("Kristofvc\\ListBundle\\Model\\Filters\\StringORMFilter::COMP_DOESNOTCONTAIN") }}" {% if data.comparator is defined and data.comparator == constant("Kristofvc\\ListBundle\\Model\\Filters\\StringORMFilter::COMP_DOESNOTCONTAIN") %} selected="selected" {% endif %} >
                 {{ "doesn't contain" | trans }}
             </option>
-            <option value="{{ constant("Kristofvc\\ListBundle\\Model\\Filters\\StringFilter::COMP_STARTSWITH") }}" {% if data.comparator is defined and data.comparator == constant("Kristofvc\\ListBundle\\Model\\Filters\\StringFilter::COMP_STARTSWITH") %} selected="selected" {% endif %} >
+            <option value="{{ constant("Kristofvc\\ListBundle\\Model\\Filters\\StringORMFilter::COMP_STARTSWITH") }}" {% if data.comparator is defined and data.comparator == constant("Kristofvc\\ListBundle\\Model\\Filters\\StringORMFilter::COMP_STARTSWITH") %} selected="selected" {% endif %} >
                 {{ "starts with" | trans }}
             </option>
-            <option value="{{ constant("Kristofvc\\ListBundle\\Model\\Filters\\StringFilter::COMP_ENDSWITH") }}" {% if data.comparator is defined and data.comparator == constant("Kristofvc\\ListBundle\\Model\\Filters\\StringFilter::COMP_ENDSWITH") %} selected="selected" {% endif %} >
+            <option value="{{ constant("Kristofvc\\ListBundle\\Model\\Filters\\StringORMFilter::COMP_ENDSWITH") }}" {% if data.comparator is defined and data.comparator == constant("Kristofvc\\ListBundle\\Model\\Filters\\StringORMFilter::COMP_ENDSWITH") %} selected="selected" {% endif %} >
                 {{ "ends with" | trans }}
             </option>
         </select>
 </div>
-<div class="col-lg-4">
-    <div class="input-group">
-        <input type="text" class="form-control" name="{{filter.field}}value{% if index is defined and index %}{{index}}{% else %}__index__{% endif %}" placeholder="{{ "value" | trans }}" {% if data.value is defined %}value="{{data.value}}"{% endif %} />
-        <span class="input-group-btn">
-            <a class="btn btn-danger action-remove" href="#"><i class="glyphicon glyphicon-minus"></i></a>
-        </span>
-    </div>
+<div class="col-lg-3">
+    <input type="text" class="form-control" name="{{filter.field}}value{% if index is defined and index %}{{index}}{% else %}__index__{% endif %}" placeholder="{{ "value" | trans }}" {% if data.value is defined %}value="{{data.value}}"{% endif %} />
+</div>
+
+<div class="col-lg-1">
+    <a class="btn btn-danger action-remove" href="#"><i class="glyphicon glyphicon-minus"></i></a>
 </div>
