@@ -14,6 +14,9 @@ abstract class AbstractListODMConfiguration extends AbstractListConfiguration
     public function getQuery($container, $filterbuilder, $configuration)
     {
         $em = $container->get('doctrine_mongodb')->getManager();
+
+        $this->prefetch();
+
         $qb = $em->createQueryBuilder($configuration->getRepository());
 
         $this->buildQuery($qb);

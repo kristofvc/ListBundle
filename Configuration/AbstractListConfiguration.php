@@ -57,6 +57,11 @@ abstract class AbstractListConfiguration implements ListConfigurationInterface
         return array();
     }
 
+    public function prefetch()
+    {
+        return false;
+    }
+
     abstract public function buildColumns();
 
     abstract public function buildActions();
