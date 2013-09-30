@@ -7,13 +7,13 @@
                 {{ "equals" | trans }}
             </option>
             <option value="{{ constant("Kristofvc\\ListBundle\\Model\\Filters\\StringORMFilter::COMP_DOESNOTEQUAL") }}" {% if data.comparator is defined and data.comparator == constant("Kristofvc\\ListBundle\\Model\\Filters\\StringORMFilter::COMP_DOESNOTEQUAL") %} selected="selected" {% endif %} >
-                {{ "doesn't equal" | trans }}
+                {{ "does not equal" | trans }}
             </option>
             <option value="{{ constant("Kristofvc\\ListBundle\\Model\\Filters\\StringORMFilter::COMP_CONTAINS") }}" {% if data.comparator is defined and data.comparator == constant("Kristofvc\\ListBundle\\Model\\Filters\\StringORMFilter::COMP_CONTAINS") %} selected="selected" {% endif %} >
                 {{ "contains" | trans }}
             </option>
             <option value="{{ constant("Kristofvc\\ListBundle\\Model\\Filters\\StringORMFilter::COMP_DOESNOTCONTAIN") }}" {% if data.comparator is defined and data.comparator == constant("Kristofvc\\ListBundle\\Model\\Filters\\StringORMFilter::COMP_DOESNOTCONTAIN") %} selected="selected" {% endif %} >
-                {{ "doesn't contain" | trans }}
+                {{ "does not contain" | trans }}
             </option>
             <option value="{{ constant("Kristofvc\\ListBundle\\Model\\Filters\\StringORMFilter::COMP_STARTSWITH") }}" {% if data.comparator is defined and data.comparator == constant("Kristofvc\\ListBundle\\Model\\Filters\\StringORMFilter::COMP_STARTSWITH") %} selected="selected" {% endif %} >
                 {{ "starts with" | trans }}
