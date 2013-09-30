@@ -63,6 +63,10 @@
                     </td>
                     {% endif %}
                 </tr>
+            {% else %}
+                <tr>
+                    <td colspan="{% if builder.configuration.actions|length > 0 %}{{ (builder.configuration.columns|length) + 1 }}{% else %}{{ builder.configuration.columns|length }}{% endif %}">No data yet.</td>
+                </tr>
             {% endfor %}
         </tbody>
     </table>
