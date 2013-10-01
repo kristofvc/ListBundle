@@ -28,7 +28,12 @@ class ListExtension extends \Twig_Extension
 
     public function renderList($service, array $params = array())
     {
-        $builder = new ListBuilder($this->container, $this->container->get($service), $params);
+        $service = $this->container->get($service);
+        if (isset($params["extraConfigurationParams"])) {
+            $service->setExtraParams($params["extraConfigurationParams"]);
+        }
+
+        $builder = new ListBuilder($this->container, $service, $params);
         $template = $this->environment->loadTemplate("KristofvcListBundle:ListExtension:renderList.html.twig");
         $request = $this->container->get('request');
 
@@ -40,7 +45,7 @@ class ListExtension extends \Twig_Extension
                     'pagination' => $builder->getPagination(),
                     'params' => $builder->getParams(),
                     'route' => $request->get('_route'),
-                    'routeParams' => $request->query->all(),
+                    'routeParams' => array_merge($request->get('_route_params'), $request->query->all()),
                     'helper' => $this->container->get('rendering.helper')
                 )
             )

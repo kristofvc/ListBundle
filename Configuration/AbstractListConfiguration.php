@@ -62,6 +62,10 @@ abstract class AbstractListConfiguration implements ListConfigurationInterface
         return false;
     }
 
+    public function setExtraParams($extraParams = array())
+    {
+    }
+
     abstract public function buildColumns();
 
     abstract public function buildActions();
