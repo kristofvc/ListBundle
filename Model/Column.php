@@ -14,6 +14,7 @@ class Column
     protected $parentField;
     protected $params;
     protected $boolean;
+    protected $booleanValue;
 
     public function __construct($name, $columnHeader, $params = array())
     {
@@ -30,6 +31,7 @@ class Column
         }
 
         $this->boolean = isset($params['boolean']) ? $params['boolean'] : false;
+        $this->booleanValue = isset($params['boolean_value']) ? $params['boolean_value'] : array();
 
         $this->route = isset($params['route']) ? $params['route'] : null;
         $this->routeParams = isset($params['routeParams']) ? $params['routeParams'] : null;
@@ -87,6 +89,11 @@ class Column
     public function isBoolean()
     {
         return $this->boolean;
+    }
+
+    public function getBooleanValue()
+    {
+        return $this->booleanValue;
     }
 
     public function getRoute()
