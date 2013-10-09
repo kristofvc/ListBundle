@@ -4,7 +4,6 @@ services:
         calls:
             - [setRequest, ['@?request=']]
         arguments:
-            container: "@service_container"
             om: "@doctrine_mongodb"
             paginator: "@knp_paginator"
             renderingHelper: "@rendering.helper"

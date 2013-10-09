@@ -4,6 +4,7 @@ namespace Kristofvc\ListBundle\Twig\Extension;
 
 use Doctrine\Common\Persistence\ManagerRegistry;
 use Knp\Component\Pager\Paginator;
+use Kristofvc\ListBundle\Configuration\ListConfigurationInterface;
 use Kristofvc\ListBundle\Helper\RenderingHelper;
 use Symfony\Component\Config\Definition\Exception\Exception;
 use Symfony\Component\DependencyInjection\ContainerInterface;
@@ -12,16 +13,14 @@ use Symfony\Component\HttpFoundation\Request;
 
 class ListExtension extends \Twig_Extension
 {
-    protected $container;
     protected $request;
     protected $objectManager;
     protected $defaultParams;
     protected $paginator;
     protected $renderingHelper;
 
-    public function __construct(ContainerInterface $container, ManagerRegistry $om, Paginator $paginator, RenderingHelper $renderingHelper, $defaultParams = array())
+    public function __construct(ManagerRegistry $om, Paginator $paginator, RenderingHelper $renderingHelper, $defaultParams = array())
     {
-        $this->container = $container;
         $this->objectManager = $om;
         $this->paginator = $paginator;
         $this->renderingHelper = $renderingHelper;
@@ -45,13 +44,12 @@ class ListExtension extends \Twig_Extension
         );
     }
 
-    public function renderList($service, array $params = array())
+    public function renderList(ListConfigurationInterface $service, array $params = array())
     {
         if (null === $this->request) {
             throw new Exception('request not found.');
         }
 
-        $service = $this->container->get($service);
         if (isset($params["extraConfigurationParams"])) {
             $service->setExtraParams($params["extraConfigurationParams"]);
         }
