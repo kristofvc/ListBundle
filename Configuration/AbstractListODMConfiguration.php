@@ -2,7 +2,10 @@
 
 namespace Kristofvc\ListBundle\Configuration;
 
+use Doctrine\Common\Persistence\ManagerRegistry;
+use Doctrine\Common\Persistence\ObjectManager;
 use Doctrine\ODM\MongoDB\Query\Builder as QueryBuilder;
+use Kristofvc\ListBundle\Builder\FilterBuilder;
 
 abstract class AbstractListODMConfiguration extends AbstractListConfiguration
 {
@@ -11,13 +14,11 @@ abstract class AbstractListODMConfiguration extends AbstractListConfiguration
         return $this;
     }
 
-    public function getQuery($container, $filterbuilder)
+    public function getQuery(ManagerRegistry $om, FilterBuilder $filterbuilder)
     {
-        $em = $container->get('doctrine_mongodb')->getManager();
-
         $this->prefetch();
 
-        $qb = $em->createQueryBuilder($this->getRepository());
+        $qb = $om->getManager()->createQueryBuilder($this->getRepository());
 
         $this->buildQuery($qb);
         $filterbuilder->addFilters($qb, $this);

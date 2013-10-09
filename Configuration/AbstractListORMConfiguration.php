@@ -2,7 +2,9 @@
 
 namespace Kristofvc\ListBundle\Configuration;
 
+use Doctrine\Common\Persistence\ManagerRegistry;
 use Doctrine\ORM\QueryBuilder;
+use Kristofvc\ListBundle\Builder\FilterBuilder;
 
 abstract class AbstractListORMConfiguration extends AbstractListConfiguration
 {
@@ -11,10 +13,9 @@ abstract class AbstractListORMConfiguration extends AbstractListConfiguration
         return $this;
     }
 
-    public function getQuery($container, $filterbuilder)
+    public function getQuery(ManagerRegistry $om, FilterBuilder $filterbuilder)
     {
-        $em = $container->get('doctrine')->getManager();
-        $qb = $em->createQueryBuilder();
+        $qb = $om->getManager()->createQueryBuilder();
         $qb->select('i')->from($this->getRepository(), 'i');
 
         $this->buildQuery($qb);

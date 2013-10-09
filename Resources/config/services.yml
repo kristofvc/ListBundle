@@ -1,7 +1,7 @@
 services:
     twig.extension.renderList:
         class: Kristofvc\ListBundle\Twig\Extension\ListExtension
-        arguments: ["@service_container"]
+        arguments: ["@service_container", "@doctrine_mongodb"]
         tags:
             -  { name: twig.extension }
             

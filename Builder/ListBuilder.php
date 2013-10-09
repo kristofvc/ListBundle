@@ -2,23 +2,32 @@
 
 namespace Kristofvc\ListBundle\Builder;
 
+use Doctrine\Common\Persistence\ManagerRegistry;
+use Knp\Component\Pager\Paginator;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Kristofvc\ListBundle\Configuration\AbstractListConfiguration;
+use Symfony\Component\HttpFoundation\Request;
 
 class ListBuilder
 {
-    protected $container;
     protected $configuration;
+    protected $request;
+    protected $paginator;
     protected $filterBuilder;
     protected $definedFilters = array();
+    protected $objectManager;
+    protected $defaultParams = array();
     protected $params = array();
 
-    public function __construct(ContainerInterface $container, AbstractListConfiguration $configuration, $params)
+    public function __construct(Request $request, Paginator $paginator, AbstractListConfiguration $configuration, ManagerRegistry $om, $defaultParams = array(), $params = array())
     {
-        $this->container = $container;
+        $this->request = $request;
+        $this->paginator = $paginator;
         $this->configuration = $configuration;
         $this->filterBuilder = new FilterBuilder();
+        $this->objectManager = $om;
 
+        $this->defaultParams = $defaultParams;
         $this->mergeParams($params)
              ->buildList();
         
@@ -47,12 +56,7 @@ class ListBuilder
 
     public function getDefaultParams()
     {
-        return array(
-            'list_template' => $this->container->getParameter('kristofvc_list.list_template'),
-            'page_parameter_name' => $this->container->getParameter('kristofvc_list.page_parameter_name'),
-            'items_per_page' => $this->container->getParameter('kristofvc_list.items_per_page'),
-            'column_empty_value' => $this->container->getParameter('kristofvc_list.column_empty_value')
-        );
+        return $this->defaultParams;
     }
 
     public function mergeParams(array $params)
@@ -77,16 +81,15 @@ class ListBuilder
         $this->configuration->buildColumns();
         $this->configuration->buildActions();
         $this->configuration->buildFilters();
-        $this->filterBuilder->analyzeFilters($this->container->get('request'), $this->configuration);
+        $this->filterBuilder->analyzeFilters($this->request, $this->configuration);
         return $this;
     }
 
     public function getPagination()
     {
-        $paginator = $this->container->get('knp_paginator');
-        $pagination = $paginator->paginate(
+        $pagination = $this->paginator->paginate(
             $this->getQuery(),
-            $this->container->get('request')->query->get($this->params['page_parameter_name'], 1),
+            $this->request->query->get($this->params['page_parameter_name'], 1),
             $this->params['items_per_page'],
             array(
                 'pageParameterName' => $this->params['page_parameter_name']
@@ -98,6 +101,6 @@ class ListBuilder
 
     public function getQuery()
     {
-        return $this->configuration->getQuery($this->container, $this->filterBuilder, $this->configuration);
+        return $this->configuration->getQuery($this->objectManager, $this->filterBuilder);
     }
 }
