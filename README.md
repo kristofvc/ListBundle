@@ -1,4 +1,4 @@
-ListBundle [![Build Status](https://travis-ci.org/kristofvc/ListBundle.png?branch=master)](https://travis-ci.org/kristofvc/ListBundle)
+ListBundle [![Build Status](https://travis-ci.org/kristofvc/ListBundle.png?branch=master)](https://travis-ci.org/kristofvc/ListBundle) [![SensioLabsInsight](https://insight.sensiolabs.com/projects/8d3d588b-b83c-4614-aeae-ad6adaa813e1/mini.png)](https://insight.sensiolabs.com/projects/8d3d588b-b83c-4614-aeae-ad6adaa813e1)
 ==========
 
 This bundle is used for rendering a list of objects. After setting up a configuration for your list, you can sort columns, filter items and view paginated data.
