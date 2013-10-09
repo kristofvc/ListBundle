@@ -1,7 +1,18 @@
 services:
     twig.extension.renderList:
         class: Kristofvc\ListBundle\Twig\Extension\ListExtension
-        arguments: ["@service_container", "@doctrine_mongodb"]
+        calls:
+            - [setRequest, ['@?request=']]
+        arguments:
+            container: "@service_container"
+            om: "@doctrine_mongodb"
+            paginator: "@knp_paginator"
+            renderingHelper: "@rendering.helper"
+            defaultParams:
+                list_template: %kristofvc_list.list_template%
+                page_parameter_name: %kristofvc_list.page_parameter_name%
+                items_per_page: %kristofvc_list.items_per_page%
+                column_empty_value: %kristofvc_list.column_empty_value%
         tags:
             -  { name: twig.extension }
             

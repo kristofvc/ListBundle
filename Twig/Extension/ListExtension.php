@@ -3,18 +3,34 @@
 namespace Kristofvc\ListBundle\Twig\Extension;
 
 use Doctrine\Common\Persistence\ManagerRegistry;
+use Knp\Component\Pager\Paginator;
+use Kristofvc\ListBundle\Helper\RenderingHelper;
+use Symfony\Component\Config\Definition\Exception\Exception;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Kristofvc\ListBundle\Builder\ListBuilder;
+use Symfony\Component\HttpFoundation\Request;
 
 class ListExtension extends \Twig_Extension
 {
     protected $container;
+    protected $request;
     protected $objectManager;
+    protected $defaultParams;
+    protected $paginator;
+    protected $renderingHelper;
 
-    public function __construct(ContainerInterface $container, ManagerRegistry $om)
+    public function __construct(ContainerInterface $container, ManagerRegistry $om, Paginator $paginator, RenderingHelper $renderingHelper, $defaultParams = array())
     {
         $this->container = $container;
         $this->objectManager = $om;
+        $this->paginator = $paginator;
+        $this->renderingHelper = $renderingHelper;
+        $this->defaultParams = $defaultParams;
+    }
+
+    public function setRequest(Request $request = null)
+    {
+        $this->request = $request;
     }
 
     public function initRuntime(\Twig_Environment $environment)
@@ -31,19 +47,16 @@ class ListExtension extends \Twig_Extension
 
     public function renderList($service, array $params = array())
     {
+        if (null === $this->request) {
+            throw new Exception('request not found.');
+        }
+
         $service = $this->container->get($service);
         if (isset($params["extraConfigurationParams"])) {
             $service->setExtraParams($params["extraConfigurationParams"]);
         }
 
-        $request = $this->container->get('request');
-        $defaultParams = array(
-            'list_template' => $this->container->getParameter('kristofvc_list.list_template'),
-            'page_parameter_name' => $this->container->getParameter('kristofvc_list.page_parameter_name'),
-            'items_per_page' => $this->container->getParameter('kristofvc_list.items_per_page'),
-            'column_empty_value' => $this->container->getParameter('kristofvc_list.column_empty_value')
-        );
-        $builder = new ListBuilder($request, $this->container->get('knp_paginator'), $service, $this->objectManager, $defaultParams, $params);
+        $builder = new ListBuilder($this->request, $this->paginator, $service, $this->objectManager, $this->defaultParams, $params);
         $template = $this->environment->loadTemplate("KristofvcListBundle:ListExtension:renderList.html.twig");
 
 
@@ -54,9 +67,9 @@ class ListExtension extends \Twig_Extension
                     'builder' => $builder,
                     'pagination' => $builder->getPagination(),
                     'params' => $builder->getParams(),
-                    'route' => $request->get('_route'),
-                    'routeParams' => array_merge($request->get('_route_params'), $request->query->all()),
-                    'helper' => $this->container->get('rendering.helper')
+                    'route' => $this->request->get('_route'),
+                    'routeParams' => array_merge($this->request->get('_route_params'), $this->request->query->all()),
+                    'helper' => $this->renderingHelper
                 )
             )
         );
