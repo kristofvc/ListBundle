@@ -3,10 +3,7 @@
 namespace Kristofvc\ListBundle\Builder;
 
 use Symfony\Component\DependencyInjection\ContainerInterface;
-use Doctrine\ORM\PersistentCollection;
 use Kristofvc\ListBundle\Configuration\AbstractListConfiguration;
-use Kristofvc\ListBundle\Model\Column;
-use Kristofvc\ListBundle\Model\Action;
 
 class ListBuilder
 {

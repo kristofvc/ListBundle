@@ -11,14 +11,14 @@ abstract class AbstractListORMConfiguration extends AbstractListConfiguration
         return $this;
     }
 
-    public function getQuery($container, $filterbuilder, $configuration)
+    public function getQuery($container, $filterbuilder)
     {
         $em = $container->get('doctrine')->getManager();
         $qb = $em->createQueryBuilder();
-        $qb->select('i')->from($configuration->getRepository(), 'i');
+        $qb->select('i')->from($this->getRepository(), 'i');
 
         $this->buildQuery($qb);
-        $filterbuilder->addFilters($qb, $configuration);
+        $filterbuilder->addFilters($qb, $this);
 
         return $qb->getQuery();
     }

@@ -2,6 +2,9 @@
 
 namespace Kristofvc\ListBundle\Builder;
 
+use Kristofvc\ListBundle\Configuration\AbstractListConfiguration;
+use Symfony\Component\HttpFoundation\Request;
+
 class FilterBuilder
 {
     protected $definedFilters = array();
@@ -12,7 +15,7 @@ class FilterBuilder
         return $this->extraParams;
     }
 
-    public function analyzeFilters($request, $configuration)
+    public function analyzeFilters(Request $request, AbstractListConfiguration $configuration)
     {
         $query = $request->query;
         $definedFilters = array();
@@ -32,7 +35,7 @@ class FilterBuilder
         $this->definedFilters = $definedFilters;
     }
 
-    public function addFilters(&$qb, $configuration)
+    public function addFilters(&$qb, AbstractListConfiguration $configuration)
     {
         $index = 1;
         foreach ($configuration->getFilters() as $filter) {
