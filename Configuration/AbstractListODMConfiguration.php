@@ -3,7 +3,6 @@
 namespace Kristofvc\ListBundle\Configuration;
 
 use Doctrine\Common\Persistence\ManagerRegistry;
-use Doctrine\Common\Persistence\ObjectManager;
 use Doctrine\ODM\MongoDB\Query\Builder as QueryBuilder;
 use Kristofvc\ListBundle\Builder\FilterBuilder;
 

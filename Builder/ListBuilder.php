@@ -4,7 +4,6 @@ namespace Kristofvc\ListBundle\Builder;
 
 use Doctrine\Common\Persistence\ManagerRegistry;
 use Knp\Component\Pager\Paginator;
-use Symfony\Component\DependencyInjection\ContainerInterface;
 use Kristofvc\ListBundle\Configuration\AbstractListConfiguration;
 use Symfony\Component\HttpFoundation\Request;
 
