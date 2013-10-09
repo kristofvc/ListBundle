@@ -7,7 +7,6 @@ use Knp\Component\Pager\Paginator;
 use Kristofvc\ListBundle\Configuration\ListConfigurationInterface;
 use Kristofvc\ListBundle\Helper\RenderingHelper;
 use Symfony\Component\Config\Definition\Exception\Exception;
-use Symfony\Component\DependencyInjection\ContainerInterface;
 use Kristofvc\ListBundle\Builder\ListBuilder;
 use Symfony\Component\HttpFoundation\Request;
 
