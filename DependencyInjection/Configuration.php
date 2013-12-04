@@ -22,6 +22,9 @@ class Configuration implements ConfigurationInterface
 
         $rootNode
             ->children()
+                ->scalarNode('driver')
+                    ->defaultValue('orm')
+                ->end()
                 ->scalarNode('items_per_page')
                     ->defaultValue(15)
                 ->end()
