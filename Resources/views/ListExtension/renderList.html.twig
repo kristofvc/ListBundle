@@ -1,0 +1,7 @@
+{% include "KristofvcListBundle:ListExtension:renderFilters.html.twig" %}
+
+{{ knp_pagination_render(pagination)|raw }}
+
+{% include params.list_template %}
+
+{{ knp_pagination_render(pagination)|raw }}

@@ -1,0 +1,23 @@
+{
+    "name": "kristofvc/list-bundle",
+    "type": "symfony-bundle",
+    "description": "This is a bundle to render lists for use with Symfony2",
+    "keywords": ["list", "render", "build", "bundle"],
+    "homepage": "http://github.com/kristofvc/ListBundle",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Kristof Van Cauwenbergh",
+            "email": "kristof.vancauwenbergh@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.3",
+        "symfony/framework-bundle": "~2.0",
+        "knplabs/knp-paginator-bundle": "2.4.*"
+    },
+    "autoload": {
+        "psr-0": { "Kristofvc\\ListBundle": "" }
+    },
+    "target-dir": "Kristofvc/ListBundle"
+}

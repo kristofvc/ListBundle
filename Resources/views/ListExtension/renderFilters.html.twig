@@ -1,0 +1,89 @@
+{% set filtercount = builder.configuration.filters | length %}
+
+{% if filtercount > 0 %}
+<div class="well">
+    <form action="{{ path(route,routeParams) }}" method="get" name="filters" id="filtersform" class="form-inline">
+        {% for key, routeParam in builder.filterBuilder.extraParams %}
+            <input type="hidden" name="{{ key }}" value="{{ routeParam }}" />
+        {% endfor %}
+
+        {% set count = 0 %}
+        {% for filter in builder.configuration.filters %}
+            {% for key, data in filter.data %}
+                {% set count = count + 1 %}
+            {% endfor %}
+        {% endfor %}
+        <div class="form-group">
+            <label class="control-label pull-left" style="font-size: 150%"><b>Filter:</b></label>
+        </div>
+        <div class="form-group">
+            <select class="filteringtype form-control">
+                {% for filter in builder.configuration.filters %}
+                    <option value="{{ filter.field }}">{{ filter.name }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="form-group">
+                <a class="btn btn-sm btn-success addFilterbutton{{ builder.configuration.name }}" href="#" data-count="{{ count + 1 }}" ><i class="glyphicon glyphicon-plus"></i></a>
+                <button type="submit" class="btn btn-sm btn-info"><i class="glyphicon glyphicon-filter"></i> filter</button>
+        </div>
+        {% for filter in builder.configuration.filters %}
+            {% for key, data in filter.data %}
+                <div class="row" style="margin-top: -0px;">
+                    {% include filter.getTemplate() with { 'filter': filter, 'index': key, 'data': data } %}
+                </div>
+            {% endfor %}
+        {% endfor %}
+        <div class="clearfix"></div>
+
+    </form>
+
+    <div id="filterdefinitions" style="display:none;">
+        {% for filter in builder.configuration.filters %}
+            <div class="{{filter.field}}filter" data-prototype='
+                <div class="row" style="margin-top: -0px;">
+                    {% include filter.getTemplate() with { 'filter': filter } %} 
+                </div>
+            '></div>
+        {% endfor %}
+    </div>
+
+    <script type="text/javascript">
+        function initDatePickers(){
+            $(".datepicker").datepicker({ dateFormat: "yy-mm-dd", yearRange: "-100:+10", changeMonth: true, changeYear: true });
+            $(".datepickerbtn").on("click", function(e){
+                e.preventDefault();
+                $(this).prev('input').datepicker("show");
+            });
+
+        }
+        $(document).ready(function() {
+            initDatePickers();
+
+            $('.addFilterbutton{{ builder.configuration.name }}').on('click', function(e) {
+                e.preventDefault();
+
+                var type = $('.filteringtype').val();
+                var newWidget = $('#filterdefinitions').find('.'+type+'filter').attr('data-prototype');
+                var typeCount = $(this).attr('data-count');
+                newWidget = newWidget.replace(/__index__/g, typeCount);
+                $(this).attr('data-count', ++typeCount);
+
+                var newFieldset = $('<div></div>').html(newWidget);
+                $(e.delegateTarget).parent().parent().append(newFieldset);
+
+                $('.action-remove').on('click', function(e) {
+                    e.preventDefault();
+                    $(this).parent().parent().remove();
+                });
+                initDatePickers();
+            });
+
+            $('.action-remove').on('click', function(e) {
+                e.preventDefault();
+                $(this).parent().parent().remove();
+            });
+        });
+    </script>
+</div>
+{% endif %}

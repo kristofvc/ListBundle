@@ -1,0 +1,29 @@
+    <div class="col-md-2">
+        <label class="control-label">{{ filter.name }}</label>
+    </div>
+    <div class="col-md-3">
+        <select class="form-control" name="{{filter.field}}comparator{% if index is defined and index %}{{index}}{% else %}__index__{% endif %}">
+            <option value="{{ constant("Kristofvc\\ListBundle\\Model\\Filters\\NumberORMFilter::COMP_EQUALS") }}" {% if data.comparator is defined and data.comparator == constant("Kristofvc\\ListBundle\\Model\\Filters\\NumberORMFilter::COMP_EQUALS") %} selected="selected" {% endif %} >
+                {{ "equals" | trans }}
+            </option>
+            <option value="{{ constant("Kristofvc\\ListBundle\\Model\\Filters\\NumberORMFilter::COMP_BEFORE") }}" {% if data.comparator is defined and data.comparator == constant("Kristofvc\\ListBundle\\Model\\Filters\\NumberORMFilter::COMP_BEFORE") %} selected="selected" {% endif %} >
+                {{ "less than" | trans }}
+            </option>
+            <option value="{{ constant("Kristofvc\\ListBundle\\Model\\Filters\\NumberORMFilter::COMP_AFTER") }}" {% if data.comparator is defined and data.comparator == constant("Kristofvc\\ListBundle\\Model\\Filters\\NumberORMFilter::COMP_AFTER") %} selected="selected" {% endif %} >
+                {{ "greater than" | trans }}
+            </option>
+            <option value="{{ constant("Kristofvc\\ListBundle\\Model\\Filters\\NumberORMFilter::COMP_EQUALSBEFORE") }}" {% if data.comparator is defined and data.comparator == constant("Kristofvc\\ListBundle\\Model\\Filters\\NumberORMFilter::COMP_EQUALSBEFORE") %} selected="selected" {% endif %} >
+                {{ "equals or less than" | trans }}
+            </option>
+            <option value="{{ constant("Kristofvc\\ListBundle\\Model\\Filters\\NumberORMFilter::COMP_EQUALSAFTER") }}" {% if data.comparator is defined and data.comparator == constant("Kristofvc\\ListBundle\\Model\\Filters\\NumberORMFilter::COMP_EQUALSAFTER") %} selected="selected" {% endif %} >
+                {{ "equals or greater than" | trans }}
+            </option>
+        </select>
+    </div>
+    <div class="col-md-3">
+        <input type="number" class="form-control" name="{{filter.field}}value{% if index is defined and index %}{{index}}{% else %}__index__{% endif %}" placeholder="{{ "value" | trans }}" {% if data.value is defined %}value="{{data.value}}"{% endif %} />
+    </div>
+    <div class="col-md-1">
+        <a class="btn btn-danger action-remove" href="#"><i class="glyphicon glyphicon-minus"></i></a>
+    </div>
+    
