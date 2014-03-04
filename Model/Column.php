@@ -6,6 +6,7 @@ class Column
 {
     protected $name;
     protected $columnHeader;
+    protected $sortIdentifier;
     protected $sortable;
     protected $sortField;
     protected $route;
@@ -25,11 +26,13 @@ class Column
         $this->name = $name;
         $this->columnHeader = $columnHeader;
 
+        $this->sortIdentifier = isset($params['sortIdentifier']) ? $params['sortIdentifier'] : 'i';
+
         $this->sortable = isset($params['sortable']) ? $params['sortable'] : false;
         if (isset($params['sortField']) && !is_null($params['sortField'])) {
-            $this->sortField = $params['sortField'];
+            $this->sortField = $this->sortIdentifier . '.' . $params['sortField'];
         } else {
-            $this->sortField = lcfirst($this->name);
+            $this->sortField = $this->sortIdentifier . '.' . lcfirst($this->name);
         }
 
         $this->prefix = isset($params['prefix']) ? $params['prefix'] : '';
@@ -89,6 +92,24 @@ class Column
     {
         $this->sortable = $sortable;
         return $this;
+    }
+
+    /**
+     * @param string $sortIdentifier
+     * @return Column
+     */
+    public function setSortIdentifier($sortIdentifier)
+    {
+        $this->sortIdentifier = $sortIdentifier;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getSortIdentifier()
+    {
+        return $this->sortIdentifier;
     }
 
     public function isBoolean()

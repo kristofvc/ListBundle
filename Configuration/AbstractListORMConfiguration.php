@@ -21,6 +21,6 @@ abstract class AbstractListORMConfiguration extends AbstractListConfiguration
         $this->buildQuery($qb);
         $filterbuilder->addFilters($qb, $this);
 
-        return $qb->getQuery();
+        return $qb;
     }
 }
