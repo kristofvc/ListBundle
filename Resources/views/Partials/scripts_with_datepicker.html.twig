@@ -1,0 +1,37 @@
+<script type="text/javascript">
+    function initDatePickers(){
+        $(".datepicker").datepicker({ dateFormat: "yy-mm-dd", yearRange: "-100:+10", changeMonth: true, changeYear: true });
+        $(".datepickerbtn").on("click", function(e){
+            e.preventDefault();
+            $(this).prev('input').datepicker("show");
+        });
+
+    }
+    $(document).ready(function() {
+        initDatePickers();
+
+        $('.addFilterbutton{{ builder.configuration.name }}').on('click', function(e) {
+            e.preventDefault();
+
+            var type = $('.filteringtype').val();
+            var newWidget = $('#filterdefinitions').find('.'+type+'filter').attr('data-prototype');
+            var typeCount = $(this).attr('data-count');
+            newWidget = newWidget.replace(/__index__/g, typeCount);
+            $(this).attr('data-count', ++typeCount);
+
+            var newFieldset = $('<div></div>').html(newWidget);
+            $(e.delegateTarget).parent().parent().append(newFieldset);
+
+            $('.action-remove').on('click', function(e) {
+                e.preventDefault();
+                $(this).parent().parent().remove();
+            });
+            initDatePickers();
+        });
+
+        $('.action-remove').on('click', function(e) {
+            e.preventDefault();
+            $(this).parent().parent().remove();
+        });
+    });
+</script>

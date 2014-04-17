@@ -1,0 +1,26 @@
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('.addFilterbutton').on('click', function(e) {
+            e.preventDefault();
+
+            var type = $('.filteringtype').val();
+            var newWidget = $('#filterdefinitions').find('.'+type+'filter').attr('data-prototype');
+            var typeCount = $(this).attr('data-count');
+            newWidget = newWidget.replace(/__index__/g, typeCount);
+            $(this).attr('data-count', ++typeCount);
+
+            var newFieldset = $('<div></div>').html(newWidget);
+            $(e.delegateTarget).parent().parent().append(newFieldset);
+
+            $('.action-remove').on('click', function(e) {
+                e.preventDefault();
+                $(this).parent().parent().remove();
+            });
+        });
+
+        $('.action-remove').on('click', function(e) {
+            e.preventDefault();
+            $(this).parent().parent().remove();
+        });
+    });
+</script>
