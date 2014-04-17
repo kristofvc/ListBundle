@@ -43,7 +43,7 @@ class FilterBuilder
                 if ($definedFilter['field'] == $filter->getField()) {
                     $data = array();
                     foreach ($filter->getDataFields() as $dataField) {
-                        if (!is_null($definedFilter[$dataField])) {
+                        if (isset($definedFilter[$dataField]) && !is_null($definedFilter[$dataField])) {
                             $data[$dataField] = $definedFilter[$dataField];
                         }
                     }

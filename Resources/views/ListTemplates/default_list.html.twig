@@ -23,15 +23,17 @@
                             {% if column.route is defined and column.route %}
                                 <a href="{{ path(column.route, helper.getRouteParams(item, column.routeParams)) }}">
                             {% endif %}
+
                             {% if column.isBoolean() %}
                                 {% if column.booleanValue[helper.renderValue(item, column.name, column.emptyValue, column.parentField)] is defined %}
-                                    {{ column.booleanValue[helper.renderValue(item, column.name, column.emptyValue, column.parentField)] }}
+                                    {{ column.prefix }}{{ column.booleanValue[helper.renderValue(item, column.name, column.emptyValue, column.parentField)] }}{{ column.suffix }}
                                 {% else %}
-                                    {{ column.booleanValue[false] }}
+                                    {{ column.prefix }}{{ column.booleanValue[false] }}{{ column.suffix }}
                                 {% endif %}
                             {% else %}
-                                {{ helper.renderValue(item, column.name, column.emptyValue, column.parentField) }}
+                                {{ column.prefix }}{{ helper.renderValue(item, column.name, column.emptyValue, column.parentField) }}{{ column.suffix }}
                             {% endif %}
+
                             {% if column.route is defined and column.route %}
                                 </a>
                             {% endif %}

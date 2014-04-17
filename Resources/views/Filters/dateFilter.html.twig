@@ -1,7 +1,7 @@
-    <div class="col-lg-2">
+    <div class="col-md-2">
         <label class="control-label">{{ filter.name }}</label>
     </div>
-    <div class="col-lg-3">
+    <div class="col-md-3">
         <select class="form-control" name="{{filter.field}}comparator{% if index is defined and index %}{{index}}{% else %}__index__{% endif %}">
             <option value="{{ constant("Kristofvc\\ListBundle\\Model\\Filters\\DateORMFilter::COMP_BEFORE") }}" {% if data.comparator is defined and data.comparator == constant("Kristofvc\\ListBundle\\Model\\Filters\\DateFilter::COMP_BEFORE") %} selected="selected" {% endif %} >
                 {{ "before" | trans }}
@@ -11,7 +11,7 @@
             </option>
         </select>
     </div>
-    <div class="col-lg-3">
+    <div class="col-md-3">
         <div class="input-group">
             <input class="form-control" type="text" class="datepicker datepicker{% if index is defined and index %}{{index}}{% else %}__index__{% endif %}" name="{{filter.field}}value{% if index is defined and index %}{{index}}{% else %}__index__{% endif %}" placeholder="{{ "date" | trans }}" {% if data.value is defined %}value="{{data.value}}"{% endif %} />
             <div class="btn-group input-group-btn">
@@ -21,7 +21,7 @@
             </div>
         </div>
     </div>
-    <div class="col-lg-1">
+    <div class="col-md-1">
         <a class="btn btn-danger action-remove" href="#"><i class="glyphicon glyphicon-minus"></i></a>
     </div>
     

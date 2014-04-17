@@ -3,9 +3,9 @@
 namespace Kristofvc\ListBundle\Model\Filters;
 
 use Doctrine\ORM\QueryBuilder;
-use Kristofvc\ListBundle\Model\Filter;
+use Kristofvc\ListBundle\Model\ORMFilter;
 
-class StringORMFilter extends Filter
+class StringORMFilter extends ORMFilter
 {
     const COMP_EQUALS = 'equals';
     const COMP_DOESNOTEQUAL = 'doesnotequal';

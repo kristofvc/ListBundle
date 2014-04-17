@@ -2,7 +2,7 @@
 
 namespace Kristofvc\ListBundle\Model;
 
-use Doctrine\DBAL\Query\QueryBuilder;
+use Doctrine\ORM\QueryBuilder;
 
 abstract class ORMFilter extends Filter
 {

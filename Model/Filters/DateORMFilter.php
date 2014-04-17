@@ -3,9 +3,9 @@
 namespace Kristofvc\ListBundle\Model\Filters;
 
 use Doctrine\ORM\QueryBuilder;
-use Kristofvc\ListBundle\Model\Filter;
+use Kristofvc\ListBundle\Model\ORMFilter;
 
-class DateORMFilter extends Filter
+class DateORMFilter extends ORMFilter
 {
     const COMP_BEFORE = 'before';
     const COMP_AFTER = 'after';
