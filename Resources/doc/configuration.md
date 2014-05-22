@@ -38,7 +38,7 @@ The above configuration is global, for every list you define, though you can als
 You can do this by adding a list of parameters in the renderList-function.
 
 ```twig
-    {{ renderList('users.list.configuration', { 'list_template': 'AcmeDemoBundle:User:userfancylist.html.twig', 'page_parameter_name': 'userpage', 'items_per_page': 10 }) }}          
+    {{ renderList(listConfiguration, { 'list_template': 'AcmeDemoBundle:User:userfancylist.html.twig', 'page_parameter_name': 'userpage', 'items_per_page': 10 }) }}
 ```
 
 ### Extra parameters

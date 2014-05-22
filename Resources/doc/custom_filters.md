@@ -6,42 +6,42 @@ Let's make a DateFilter (which already exists).
 ## The class
 
 ```php
-    <?php
-    namespace Kristofvc\ListBundle\Model\Filters;
+  <?php
 
-    use Doctrine\ORM\QueryBuilder;
-    use Kristofvc\ListBundle\Model\Filter;
+  namespace Kristofvc\ListBundle\Model\Filters;
 
-    class DateFilter extends Filter
-    {
-        const COMP_BEFORE = 'before';
-        const COMP_AFTER = 'after';
+  use Doctrine\ORM\QueryBuilder;
+  use Kristofvc\ListBundle\Model\ORMFilter;
 
-        public function addFilter(QueryBuilder &$qb, $id, $data)
-        {
-            switch ($data['comparator']) {
-                case self::COMP_BEFORE:
-                    $qb->andWhere($qb->expr()->lte('i.' . $this->field, ':var_' . $id));
-                    $qb->setParameter('var_' . $id, $data['value']);
-                    break;
-                case self::COMP_AFTER:
-                    $qb->andWhere($qb->expr()->gte('i.' . $this->field, ':var_' . $id));
-                    $qb->setParameter('var_' . $id, $data['value']);
-                    break;
-            }
-        }
+  class DateORMFilter extends ORMFilter
+  {
+      const COMP_BEFORE = 'before';
+      const COMP_AFTER = 'after';
 
-        public function getTemplate()
-        {
-            return 'KristofvcListBundle:Filters:dateFilter.html.twig';
-        }
+      public function addFilter(QueryBuilder &$qb, $id, $data)
+      {
+          switch ($data['comparator']) {
+              case self::COMP_BEFORE:
+                  $qb->andWhere($qb->expr()->lte($this->identifier . '.' . $this->field, ':var_' . $id))
+                     ->setParameter('var_' . $id, $data['value']);
+                  break;
+              case self::COMP_AFTER:
+                  $qb->andWhere($qb->expr()->gte($this->identifier . '.' . $this->field, ':var_' . $id))
+                     ->setParameter('var_' . $id, $data['value']);
+                  break;
+          }
+      }
 
-        public function getDataFields()
-        {
-            return array('value', 'comparator');
-        }
-    }
-    ?>
+      public function getTemplate()
+      {
+          return 'KristofvcListBundle:Filters:dateFilter.html.twig';
+      }
+
+      public function getDataFields()
+      {
+          return array('value', 'comparator');
+      }
+  }
 ```
 
 We have the getDataFields method. In this method you can define the names of the fields that have to be filled in to make the filter work.
