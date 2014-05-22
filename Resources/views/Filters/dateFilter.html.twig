@@ -16,12 +16,12 @@
             <input class="form-control" type="text" class="datepicker datepicker{% if index is defined and index %}{{index}}{% else %}__index__{% endif %}" name="{{filter.field}}value{% if index is defined and index %}{{index}}{% else %}__index__{% endif %}" placeholder="{{ "date" | trans }}" {% if data.value is defined %}value="{{data.value}}"{% endif %} />
             <div class="btn-group input-group-btn">
                 <a href="#" class="btn btn-default datepickerbtn datepickerbtn{% if index is defined and index %}{{index}}{% else %}__index__{% endif %}">
-                    <i class="glyphicon glyphicon-calendar"></i>
+                    <i class="glyphicon glyphicon-calendar">calendar</i>
                 </a>
             </div>
         </div>
     </div>
     <div class="col-md-1">
-        <a class="btn btn-danger action-remove" href="#"><i class="glyphicon glyphicon-minus"></i></a>
+        <a class="btn btn-danger action-remove" href="#"><i class="glyphicon glyphicon-minus">remove</i></a>
     </div>
     

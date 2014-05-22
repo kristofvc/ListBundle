@@ -24,6 +24,6 @@
         <input type="number" class="form-control" name="{{filter.field}}value{% if index is defined and index %}{{index}}{% else %}__index__{% endif %}" placeholder="{{ "value" | trans }}" {% if data.value is defined %}value="{{data.value}}"{% endif %} />
     </div>
     <div class="col-md-1">
-        <a class="btn btn-danger action-remove" href="#"><i class="glyphicon glyphicon-minus"></i></a>
+        <a class="btn btn-danger action-remove" href="#"><i class="glyphicon glyphicon-minus">remove</i></a>
     </div>
     
