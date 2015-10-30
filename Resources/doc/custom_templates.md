@@ -92,8 +92,8 @@ When overwriting a template you need to loop over the list of your objects. This
 </div>
 ```
 
-The above is the default template. Your columns are in builder.configuration.columns.
-In every column you can ask for the columnHeader, and if the column needs to be sorted with `column.isSortable`. Sorting is done with the KnpPaginatorBundle, so you can look there for more information on how to make a column sortable.
+The above is the default template. Your columns are in ```builder.configuration.columns```.
+In every column you can request the columnHeader, and whether or not the column needs to be sorted (by using ```column.isSortable```). Sorting is done using the KnpPaginatorBundle, so you can look there for more information on how to make a column sortable.
 Field to be sorted on can be fetched with `column.sortField`.
 
 For every item in pagination you can render a value for every column.
@@ -102,7 +102,7 @@ For every item in pagination you can render a value for every column.
     {{ builder.renderValue(item, column) }}
 ```
 
-You can also render actions for every item. You do this by looping builder.configuration.actions.
+You can also render actions for every item. You do this by looping ```builder.configuration.actions```.
 The path that the action needs to execute can be rendered by the following
 
 ```twig
