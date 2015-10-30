@@ -54,7 +54,7 @@ public function registerBundles()
 
 ### Step 3: Create your list's configuration
 
-To render a list of certain object you got to make a simple service telling this bundle how to render your list. To start this configuration, you need to extend the 'Kristofvc\ListBundle\Configuration\AbstractListORMConfiguration'-class.
+To render a list of certain objects you need to make a simple service to tell this bundle how to render your list. To start this configuration, you need to extend the 'Kristofvc\ListBundle\Configuration\AbstractListORMConfiguration'-class.
 The following example is for a list of users.
 
 ```php
@@ -79,7 +79,7 @@ The following example is for a list of users.
 
         public function buildActions(){
             $this->addAction(new Action('edit', 'admin_user_edit', array('Id'), array('icon' => 'icon-edit'));
-            $this->addAction(new Action('edit', 'admin_user_deleteuser', array('Id'), array('icon' => 'icon-trash', 'iconWhite'=> true, 'btnColour' => 'danger', 'modal' => true));
+            $this->addAction(new Action('delete', 'admin_user_deleteuser', array('Id'), array('icon' => 'icon-trash', 'iconWhite'=> true, 'btnColour' => 'danger', 'modal' => true));
         }
 
         public function buildFilters(){
@@ -100,24 +100,26 @@ The following example is for a list of users.
 ```
 
 As you can see, when you extend the AbstractListORMConfiguration, you need to implement some methods.
-First one is a method to build the columns of your list. You first need to specify a name for each column. This name is also used for rendering the value for each object. So every column-name you defined needs a get-, has- or is-method in your object's class.
-Next is the header for the column. After that you can optionally set or the column needs sorting functionality and which fields you want to sort on (if no fields are defined, it takes the column-name).
-You can then also add a route en route-parameters to link values in the column to (see column 'name').
 
-Then you can add some actions to your list. In the example we have two actions, an edit action, and a delete action. An action takes a name, a route and routeparameters. Optionally you can define an icon, if the action needs confirmation with a dialog and which colour the button has.
+```buildColumns()``` allows you to build the columns of your list. You need to specify a name for each column as a first parameter. This name is also used for rendering the value for each object, so every column-name you define needs a get-, has- or is-method in your object's class.
+Next parameter is the header for the column. Optionally you can use the third parameter to add whether the column needs sorting functionality or not and which fields you want to sort on (if no fields are defined, it takes the column-name). You can then also add a route en route-parameters to link values in the column to (see column 'name').
 
-You can also define on which fields you want filtering. For each field you can choose different sorts of filters.
+```buildActions()``` adds actions to your list. In the example we have two actions, an edit action, and a delete action. An action takes a name, a route and routeparameters. Optionally you can define an icon, whether the action needs a dialog confirmation or not, and which colour the button should be ('delete'-action in example above).
+
+```buildFilters()``` defines which fields you want to filter on. For each field you can choose different types of filters.
 
 - StringORMFilter
 - DateORMFilter
 - ...
 - [You can also define your own filters. Look here for more information.] (https://github.com/kristofvc/ListBundle/blob/master/Resources/doc/custom_filters.md) 
 
-Next you define which entity you want to build your list with and you optionally define some extra parameters for your query.
+```getRepository()``` tells you which entity you want to build your list with.
+
+ ```buildQuery()``` can be used optionally and defines some extra parameters for your query.
 
 ### Step 4: Initialize your configuration
 
-To render the list you need to initialitize the list in your controller or add it as a service and fetch it in the controller.
+To render the list you need to initialize the list in your controller or add it as a service and fetch it in the controller.
 
 ```php
   return array(..., 'listConfiguration' => new , ...)
