@@ -44,11 +44,11 @@ Let's make a DateFilter (which already exists).
   }
 ```
 
-We have the getDataFields method. In this method you can define the names of the fields that have to be filled in to make the filter work.
+In the ```getDataFields()``` method you can define the names of the fields that have to be filled in to make the filter work.
 In this example, for this filter, we have a comparator-field and a value-field. 
-You filter class also needs to have a template, returned by the getTemplate method. 
+Your filter class also needs to have a template, returned by the ```getTemplate()``` method. 
 
-In the addFilter method you define which clauses needs to be added to the querybuilder when a user wants to filter.
+In the ```addFilter()``` method you define which clauses need to be added to the querybuilder when a user wants to filter.
 For a datefilter we have two states, date is before the given date or date is after the given date.
 
 ## The template
@@ -73,7 +73,7 @@ For a datefilter we have two states, date is before the given date or date is af
 ```
 
 In the template we define the form-field needed to filter. We always work in the same pattern. For every field you defined in the getDataFields method in your filter-class, you add a formfield to your template.
-The name of this field needs to be preceded by the filter name and after the fieldname you put the index of the searchfield. This is {{ index }} when index is defined and __index__ otherwise.
+The name of this field needs to be preceded by the filter name and after the fieldname you put the index of the searchfield. This is ```{{ index }}``` when index is defined and ```__index__``` otherwise.
 
 ```twig
     {{filter.field}}comparator{% if index is defined and index %}{{index}}{% else %}__index__{% endif %}
