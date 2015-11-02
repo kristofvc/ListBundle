@@ -73,13 +73,13 @@ The following example is for a list of users.
         public function buildColumns(){
             $this->addColumn(new Column('Email', 'E-mail', array('sortable' => true)));
             $this->addColumn(new Column('Name', 'Name', array('sortable' => true, 'sortField' => 'lastname, i.firstname', 'route' => 'admin_user_edit', 'routeParams' => array('Id'))));
-            $this->addColumn(new Column('Groups', 'Groups');
-            $this->addColumn(new Column('LastLogin', 'Last logged in at', array('sortable' => true));
+            $this->addColumn(new Column('Groups', 'Groups'));
+            $this->addColumn(new Column('LastLogin', 'Last logged in at', array('sortable' => true)));
         }
 
         public function buildActions(){
-            $this->addAction(new Action('edit', 'admin_user_edit', array('Id'), array('icon' => 'icon-edit'));
-            $this->addAction(new Action('delete', 'admin_user_deleteuser', array('Id'), array('icon' => 'icon-trash', 'iconWhite'=> true, 'btnColour' => 'danger', 'modal' => true));
+            $this->addAction(new Action('edit', 'admin_user_edit', array('Id'), array('icon' => 'icon-edit')));
+            $this->addAction(new Action('delete', 'admin_user_deleteuser', array('Id'), array('icon' => 'icon-trash', 'iconWhite'=> true, 'btnColour' => 'danger', 'modal' => true)));
         }
 
         public function buildFilters(){
