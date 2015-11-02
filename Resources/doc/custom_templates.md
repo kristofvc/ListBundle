@@ -107,4 +107,4 @@ The path that the action needs to execute can be rendered by the following
 
 ```twig
     {{ path(action.route, builder.getRouteParams(item, action)) }}
-```  
+``` 
