@@ -111,7 +111,10 @@ Next parameter is the header for the column. Optionally you can use the third pa
 - StringORMFilter
 - DateORMFilter
 - ...
-- [You can also define your own filters. Look here for more information.] (https://github.com/kristofvc/ListBundle/blob/master/Resources/doc/custom_filters.md) 
+- [You can also define your own filters. Look here for more information.] (https://github.com/kristofvc/ListBundle/blob/master/Resources/doc/custom_filters.md)
+ 
+ When adding filters, make sure to include the ```Partials\scripts.html.twig``` file in your views. (```
+    {% include "KristofvcListBundle:Partials:scripts.html.twig" %}```) and include a copy of jQuery.
 
 ```getRepository()``` tells you which entity you want to build your list with.
 
